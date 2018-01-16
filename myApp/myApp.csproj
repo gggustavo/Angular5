@@ -30,20 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\app\components\login\login.component.ts" />
-    <None Remove="ClientApp\models\login-response.model.ts" />
-    <None Remove="ClientApp\models\permission.model.ts" />
-    <None Remove="ClientApp\models\user-login.model.ts" />
-    <None Remove="ClientApp\models\user.model.ts" />
-    <None Remove="ClientApp\services\alert.service.ts" />
-    <None Remove="ClientApp\services\app-translation.service.ts" />
-    <None Remove="ClientApp\services\auth.service.ts" />
-    <None Remove="ClientApp\services\configuration.service.ts" />
-    <None Remove="ClientApp\services\db-keys.ts" />
-    <None Remove="ClientApp\services\endpoint-factory.service.ts" />
-    <None Remove="ClientApp\services\jwt-helper.ts" />
-    <None Remove="ClientApp\services\local-store-manager.service.ts" />
-    <None Remove="ClientApp\services\utilities.ts" />
+    <None Remove="ClientApp\app-error.handler.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -55,22 +42,16 @@
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj" />
   </ItemGroup>
+  
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\app\components\login\login.component.ts" />
-    <TypeScriptCompile Include="ClientApp\models\login-response.model.ts" />
-    <TypeScriptCompile Include="ClientApp\models\permission.model.ts" />
-    <TypeScriptCompile Include="ClientApp\models\user-login.model.ts" />
-    <TypeScriptCompile Include="ClientApp\models\user.model.ts" />
-    <TypeScriptCompile Include="ClientApp\services\alert.service.ts" />
-    <TypeScriptCompile Include="ClientApp\services\app-translation.service.ts" />
-    <TypeScriptCompile Include="ClientApp\services\auth.service.ts" />
-    <TypeScriptCompile Include="ClientApp\services\configuration.service.ts" />
-    <TypeScriptCompile Include="ClientApp\services\db-keys.ts" />
-    <TypeScriptCompile Include="ClientApp\services\endpoint-factory.service.ts" />
-    <TypeScriptCompile Include="ClientApp\services\jwt-helper.ts" />
-    <TypeScriptCompile Include="ClientApp\services\local-store-manager.service.ts" />
-    <TypeScriptCompile Include="ClientApp\services\utilities.ts" />
+    <Folder Include="ClientApp\dist\" />
+    <Folder Include="wwwroot\dist\" />
+  </ItemGroup>
+  
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app-error.handler.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
