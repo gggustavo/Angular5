@@ -29,15 +29,15 @@ export class AuthService {
     private _loginStatus = new Subject<boolean>();
 
 
-    constructor(private router: Router, private configurations: ConfigurationService, private localStorage: LocalStoreManager) {
+    constructor(private router: Router, private configurations: ConfigurationService, private endpointFactory: EndpointFactory, private localStorage: LocalStoreManager) {
         this.initializeLoginStatus();
     }
-    
+
 
     private initializeLoginStatus() {
-        //this.localStorage.getInitEvent().subscribe(() => {
-        //    this.reevaluateLoginStatus();
-        //});
+        this.localStorage.getInitEvent().subscribe(() => {
+            this.reevaluateLoginStatus();
+        });
     }
 
 
@@ -54,7 +54,7 @@ export class AuthService {
 
     redirectLoginUser() {
         let redirect = this.loginRedirectUrl && this.loginRedirectUrl != '/' && this.loginRedirectUrl != ConfigurationService.defaultHomeUrl ? this.loginRedirectUrl : this.homeUrl;
-        this.loginRedirectUrl = '';
+        this.loginRedirectUrl = null;
 
 
         let urlParamsAndFragment = Utilities.splitInTwo(redirect, '#');
@@ -72,7 +72,7 @@ export class AuthService {
 
     redirectLogoutUser() {
         let redirect = this.logoutRedirectUrl ? this.logoutRedirectUrl : this.loginUrl;
-        this.logoutRedirectUrl = '';
+        this.logoutRedirectUrl = null;
 
         this.router.navigate([redirect]);
     }
@@ -86,7 +86,7 @@ export class AuthService {
 
     reLogin() {
 
-        //this.localStorage.deleteData(DBkeys.TOKEN_EXPIRES_IN);
+        this.localStorage.deleteData(DBkeys.TOKEN_EXPIRES_IN);
 
         if (this.reLoginDelegate) {
             this.reLoginDelegate();
@@ -98,22 +98,22 @@ export class AuthService {
 
 
     refreshLogin() {
-        //return this.endpointFactory.getRefreshLoginEndpoint<LoginResponse>()
-        //    .map(response => this.processLoginResponse(response, this.rememberMe));
+        return this.endpointFactory.getRefreshLoginEndpoint<LoginResponse>()
+            .map(response => this.processLoginResponse(response, this.rememberMe));
     }
 
 
-    login(userName?: string, password?: string, rememberMe?: boolean) {
+    login(userName: string, password: string, rememberMe?: boolean) {
 
         if (this.isLoggedIn)
             this.logout();
 
-        //return this.endpointFactory.getLoginEndpoint<LoginResponse>(userName, password)
-        //    .map(response => this.processLoginResponse(response, rememberMe));
+        return this.endpointFactory.getLoginEndpoint<LoginResponse>(userName, password)
+            .map(response => this.processLoginResponse(response, rememberMe));
     }
 
 
-    private processLoginResponse(response: LoginResponse, rememberMe?: boolean) {
+    private processLoginResponse(response: LoginResponse, rememberMe: boolean) {
 
         let accessToken = response.access_token;
 
@@ -155,37 +155,37 @@ export class AuthService {
     }
 
 
-    private saveUserDetails(user: User, permissions: PermissionValues[], accessToken: string, idToken: string, refreshToken: string, expiresIn: Date, rememberMe?: boolean) {
+    private saveUserDetails(user: User, permissions: PermissionValues[], accessToken: string, idToken: string, refreshToken: string, expiresIn: Date, rememberMe: boolean) {
 
-        //if (rememberMe) {
-        //    this.localStorage.savePermanentData(accessToken, DBkeys.ACCESS_TOKEN);
-        //    this.localStorage.savePermanentData(idToken, DBkeys.ID_TOKEN);
-        //    this.localStorage.savePermanentData(refreshToken, DBkeys.REFRESH_TOKEN);
-        //    this.localStorage.savePermanentData(expiresIn, DBkeys.TOKEN_EXPIRES_IN);
-        //    this.localStorage.savePermanentData(permissions, DBkeys.USER_PERMISSIONS);
-        //    this.localStorage.savePermanentData(user, DBkeys.CURRENT_USER);
-        //}
-        //else {
-        //    this.localStorage.saveSyncedSessionData(accessToken, DBkeys.ACCESS_TOKEN);
-        //    this.localStorage.saveSyncedSessionData(idToken, DBkeys.ID_TOKEN);
-        //    this.localStorage.saveSyncedSessionData(refreshToken, DBkeys.REFRESH_TOKEN);
-        //    this.localStorage.saveSyncedSessionData(expiresIn, DBkeys.TOKEN_EXPIRES_IN);
-        //    this.localStorage.saveSyncedSessionData(permissions, DBkeys.USER_PERMISSIONS);
-        //    this.localStorage.saveSyncedSessionData(user, DBkeys.CURRENT_USER);
-        //}
+        if (rememberMe) {
+            this.localStorage.savePermanentData(accessToken, DBkeys.ACCESS_TOKEN);
+            this.localStorage.savePermanentData(idToken, DBkeys.ID_TOKEN);
+            this.localStorage.savePermanentData(refreshToken, DBkeys.REFRESH_TOKEN);
+            this.localStorage.savePermanentData(expiresIn, DBkeys.TOKEN_EXPIRES_IN);
+            this.localStorage.savePermanentData(permissions, DBkeys.USER_PERMISSIONS);
+            this.localStorage.savePermanentData(user, DBkeys.CURRENT_USER);
+        }
+        else {
+            this.localStorage.saveSyncedSessionData(accessToken, DBkeys.ACCESS_TOKEN);
+            this.localStorage.saveSyncedSessionData(idToken, DBkeys.ID_TOKEN);
+            this.localStorage.saveSyncedSessionData(refreshToken, DBkeys.REFRESH_TOKEN);
+            this.localStorage.saveSyncedSessionData(expiresIn, DBkeys.TOKEN_EXPIRES_IN);
+            this.localStorage.saveSyncedSessionData(permissions, DBkeys.USER_PERMISSIONS);
+            this.localStorage.saveSyncedSessionData(user, DBkeys.CURRENT_USER);
+        }
 
-        //this.localStorage.savePermanentData(rememberMe, DBkeys.REMEMBER_ME);
+        this.localStorage.savePermanentData(rememberMe, DBkeys.REMEMBER_ME);
     }
 
 
 
     logout(): void {
-        //this.localStorage.deleteData(DBkeys.ACCESS_TOKEN);
-        //this.localStorage.deleteData(DBkeys.ID_TOKEN);
-        //this.localStorage.deleteData(DBkeys.REFRESH_TOKEN);
-        //this.localStorage.deleteData(DBkeys.TOKEN_EXPIRES_IN);
-        //this.localStorage.deleteData(DBkeys.USER_PERMISSIONS);
-        //this.localStorage.deleteData(DBkeys.CURRENT_USER);
+        this.localStorage.deleteData(DBkeys.ACCESS_TOKEN);
+        this.localStorage.deleteData(DBkeys.ID_TOKEN);
+        this.localStorage.deleteData(DBkeys.REFRESH_TOKEN);
+        this.localStorage.deleteData(DBkeys.TOKEN_EXPIRES_IN);
+        this.localStorage.deleteData(DBkeys.USER_PERMISSIONS);
+        this.localStorage.deleteData(DBkeys.CURRENT_USER);
 
         this.configurations.clearLocalChanges();
 
@@ -195,16 +195,16 @@ export class AuthService {
 
     private reevaluateLoginStatus(currentUser?: User) {
 
-        //let user = currentUser || this.localStorage.getDataObject<User>(DBkeys.CURRENT_USER);
-        //let isLoggedIn = user != null;
+        let user = currentUser || this.localStorage.getDataObject<User>(DBkeys.CURRENT_USER);
+        let isLoggedIn = user != null;
 
-        //if (this.previousIsLoggedInCheck != isLoggedIn) {
-        //    setTimeout(() => {
-        //        this._loginStatus.next(isLoggedIn);
-        //    });
-        //}
+        if (this.previousIsLoggedInCheck != isLoggedIn) {
+            setTimeout(() => {
+                this._loginStatus.next(isLoggedIn);
+            });
+        }
 
-        //this.previousIsLoggedInCheck = isLoggedIn;
+        this.previousIsLoggedInCheck = isLoggedIn;
     }
 
 
@@ -266,5 +266,4 @@ export class AuthService {
     get rememberMe(): boolean {
         return this.localStorage.getDataObject<boolean>(DBkeys.REMEMBER_ME) == true;
     }
-
 }

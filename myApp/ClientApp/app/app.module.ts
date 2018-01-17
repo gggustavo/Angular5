@@ -18,18 +18,22 @@ import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppErrorHandler } from './app-error.handler';
-import { AppTranslationService, TranslateLanguageLoader } from '../services/app-translation.service';
-import { ConfigurationService } from '../services/configuration.service';
-import { AlertService } from '../services/alert.service';
-import { LocalStoreManager } from '../services/local-store-manager.service';
-import { EndpointFactory } from '../services/endpoint-factory.service';
-import { AccountService } from '../services/account.service';
-import { AccountEndpoint } from '../services/account-endpoint.service';
+import { AppTitleService } from './services/app-title.service';
+import { AppTranslationService, TranslateLanguageLoader } from './services/app-translation.service';
+import { ConfigurationService } from './services/configuration.service';
+import { AlertService } from './services/alert.service';
+import { LocalStoreManager } from './services/local-store-manager.service';
+import { EndpointFactory } from './services/endpoint-factory.service';
+import { NotificationService } from './services/notification.service';
+import { NotificationEndpoint } from './services/notification-endpoint.service';
+import { AccountService } from './services/account.service';
+import { AccountEndpoint } from './services/account-endpoint.service';
 
-import { AppComponent } from "../app/components/app/app.component";
+import { AppComponent } from "./components/app.component";
 import { LoginComponent } from "./components/login/login.component";
 import { HomeComponent } from "./components/home/home.component";
-
+import { NotFoundComponent } from "./components/not-found/not-found.component";
+import { NotificationsViewerComponent } from "./components/controls/notifications-viewer.component";
 
 @NgModule({
     imports: [
@@ -56,14 +60,19 @@ import { HomeComponent } from "./components/home/home.component";
     declarations: [
         AppComponent,
         LoginComponent,
-        HomeComponent
+        HomeComponent,
+        NotFoundComponent,
+        NotificationsViewerComponent
     ],
     providers: [
         { provide: 'BASE_URL', useFactory: getBaseUrl },
         { provide: ErrorHandler, useClass: AppErrorHandler },
         AlertService,
         ConfigurationService,
+        AppTitleService,
         AppTranslationService,
+        NotificationService,
+        NotificationEndpoint,
         AccountService,
         AccountEndpoint,
         LocalStoreManager,

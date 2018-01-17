@@ -3,31 +3,34 @@ import { Router, NavigationStart } from '@angular/router';
 import { ToastyService, ToastyConfig, ToastOptions, ToastData } from 'ng2-toasty';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
-import { AlertService, AlertDialog, DialogType, AlertMessage, MessageSeverity } from '../../../services/alert.service';
-import { AppTranslationService } from "../../../services/app-translation.service";
-import { AccountService } from '../../../services/account.service';
-import { LocalStoreManager } from '../../../services/local-store-manager.service';
-import { AuthService } from '../../../services/auth.service';
-import { ConfigurationService } from '../../../services/configuration.service';
-import { Permission } from '../../../models/permission.model';
-import { LoginComponent } from "../../components/login/login.component";
+import { AlertService, AlertDialog, DialogType, AlertMessage, MessageSeverity } from '../services/alert.service';
+import { AppTranslationService } from "../services/app-translation.service";
+import { AccountService } from '../services/account.service';
+import { LocalStoreManager } from '../services/local-store-manager.service';
+import { AuthService } from '../services/auth.service';
+import { ConfigurationService } from '../services/configuration.service';
+import { Permission } from '../models/permission.model';
+import { LoginComponent } from "../components/login/login.component";
+import { NotificationService } from "../services/notification.service";
+import { AppTitleService } from '../services/app-title.service';
 
-//var alertify: any = require('../assets/scripts/alertify.js');
+var alertify: any = require('../assets/scripts/alertify.js');
 
 @Component({
     selector: 'app',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
+    styleUrls: ['./app.component.css', '../styles.css', '../themes.css'],
     encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {
+export class AppComponent implements OnInit, AfterViewInit {
 
     isAppLoaded: boolean;
     isUserLoggedIn: boolean;
     shouldShowLoginModal: boolean;
     removePrebootScreen: boolean;
     newNotificationCount = 0;
-    appTitle = "myApp";    
+    appTitle = "myApp";
+    
 
     stickyToasties: number[] = [];
 
@@ -41,9 +44,19 @@ export class AppComponent {
     loginControl: LoginComponent;
 
 
+    get notificationsTitle() {
+
+        let gT = (key: string) => this.translationService.getTranslation(key);
+
+        if (this.newNotificationCount)
+            return `${gT("app.Notifications")} (${this.newNotificationCount} ${gT("app.New")})`;
+        else
+            return gT("app.Notifications");
+    }
+
 
     constructor(storageManager: LocalStoreManager, private toastyService: ToastyService, private toastyConfig: ToastyConfig,
-        private accountService: AccountService, private alertService: AlertService,
+        private accountService: AccountService, private alertService: AlertService, private notificationService: NotificationService, private appTitleService: AppTitleService,
         private authService: AuthService, private translationService: AppTranslationService, public configurations: ConfigurationService, public router: Router) {
 
         storageManager.initialiseStorageSyncListener();
@@ -56,8 +69,11 @@ export class AppComponent {
         this.toastyConfig.position = 'top-right';
         this.toastyConfig.limit = 100;
         this.toastyConfig.showClose = true;
+
+        this.appTitleService.appName = this.appTitle;
     }
-        
+
+
     ngAfterViewInit() {
 
         this.modalLoginControls.changes.subscribe((controls: QueryList<any>) => {
@@ -166,86 +182,86 @@ export class AppComponent {
 
     initNotificationsLoading() {
 
-        //this.notificationsLoadingSubscription = this.notificationService.getNewNotificationsPeriodically()
-        //    .subscribe(notifications => {
-        //        this.dataLoadingConsecutiveFailurs = 0;
-        //        this.newNotificationCount = notifications.filter(n => !n.isRead).length;
-        //    },
-        //    error => {
-        //        this.alertService.logError(error);
+        this.notificationsLoadingSubscription = this.notificationService.getNewNotificationsPeriodically()
+            .subscribe(notifications => {
+                this.dataLoadingConsecutiveFailurs = 0;
+                this.newNotificationCount = notifications.filter(n => !n.isRead).length;
+            },
+            error => {
+                this.alertService.logError(error);
 
-        //        if (this.dataLoadingConsecutiveFailurs++ < 20)
-        //            setTimeout(() => this.initNotificationsLoading(), 5000);
-        //        else
-        //            this.alertService.showStickyMessage("Load Error", "Loading new notifications from the server failed!", MessageSeverity.error);
-        //    });
+                if (this.dataLoadingConsecutiveFailurs++ < 20)
+                    setTimeout(() => this.initNotificationsLoading(), 5000);
+                else
+                    this.alertService.showStickyMessage("Load Error", "Loading new notifications from the server failed!", MessageSeverity.error);
+            });
     }
 
 
     markNotificationsAsRead() {
 
-        //let recentNotifications = this.notificationService.recentNotifications;
+        let recentNotifications = this.notificationService.recentNotifications;
 
-        //if (recentNotifications.length) {
-        //    this.notificationService.readUnreadNotification(recentNotifications.map(n => n.id), true)
-        //        .subscribe(response => {
-        //            for (let n of recentNotifications) {
-        //                n.isRead = true;
-        //            }
+        if (recentNotifications.length) {
+            this.notificationService.readUnreadNotification(recentNotifications.map(n => n.id), true)
+                .subscribe(response => {
+                    for (let n of recentNotifications) {
+                        n.isRead = true;
+                    }
 
-        //            this.newNotificationCount = recentNotifications.filter(n => !n.isRead).length;
-        //        },
-        //        error => {
-        //            this.alertService.logError(error);
-        //            this.alertService.showMessage("Notification Error", "Marking read notifications failed", MessageSeverity.error);
+                    this.newNotificationCount = recentNotifications.filter(n => !n.isRead).length;
+                },
+                error => {
+                    this.alertService.logError(error);
+                    this.alertService.showMessage("Notification Error", "Marking read notifications failed", MessageSeverity.error);
 
-        //        });
-        //}
+                });
+        }
     }
 
 
 
     showDialog(dialog: AlertDialog) {
 
-        //alertify.set({
-        //    labels: {
-        //        ok: dialog.okLabel || "OK",
-        //        cancel: dialog.cancelLabel || "Cancel"
-        //    }
-        //});
+        alertify.set({
+            labels: {
+                ok: dialog.okLabel || "OK",
+                cancel: dialog.cancelLabel || "Cancel"
+            }
+        });
 
-        //switch (dialog.type) {
-        //    case DialogType.alert:
-        //        alertify.alert(dialog.message);
+        switch (dialog.type) {
+            case DialogType.alert:
+                alertify.alert(dialog.message);
 
-        //        break
-        //    case DialogType.confirm:
-        //        alertify
-        //            .confirm(dialog.message, (e) => {
-        //                if (e) {
-        //                    dialog.okCallback();
-        //                }
-        //                else {
-        //                    if (dialog.cancelCallback)
-        //                        dialog.cancelCallback();
-        //                }
-        //            });
+                break
+            case DialogType.confirm:
+                alertify
+                    .confirm(dialog.message, (e) => {
+                        if (e) {
+                            dialog.okCallback();
+                        }
+                        else {
+                            if (dialog.cancelCallback)
+                                dialog.cancelCallback();
+                        }
+                    });
 
-        //        break;
-        //    case DialogType.prompt:
-        //        alertify
-        //            .prompt(dialog.message, (e, val) => {
-        //                if (e) {
-        //                    dialog.okCallback(val);
-        //                }
-        //                else {
-        //                    if (dialog.cancelCallback)
-        //                        dialog.cancelCallback();
-        //                }
-        //            }, dialog.defaultValue);
+                break;
+            case DialogType.prompt:
+                alertify
+                    .prompt(dialog.message, (e, val) => {
+                        if (e) {
+                            dialog.okCallback(val);
+                        }
+                        else {
+                            if (dialog.cancelCallback)
+                                dialog.cancelCallback();
+                        }
+                    }, dialog.defaultValue);
 
-        //        break;
-        //}
+                break;
+        }
     }
 
 
@@ -332,5 +348,4 @@ export class AppComponent {
     get canViewOrders() {
         return true; //eg. viewOrdersPermission
     }
-
 }

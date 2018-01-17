@@ -27,40 +27,27 @@
   <ItemGroup>
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
     <Content Remove="ClientApp\**" />
+    <Content Remove="wwwroot\dist\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\app-error.handler.ts" />
-    <None Remove="ClientApp\app\app-routing.module.ts" />
-    <None Remove="ClientApp\app\app.module.ts" />
-    <None Remove="ClientApp\services\auth-guard.service.ts" />
+    <None Remove="ClientApp\app\components\controls\notifications-viewer.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="ClientApp\app\assets\locale\en.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="ClientApp\app\assets\locale\en.json">      
     </Content>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj" />
   </ItemGroup>
-  
 
   <ItemGroup>
-    <Folder Include="ClientApp\dist\" />
-    <Folder Include="wwwroot\dist\" />
+    <TypeScriptCompile Include="ClientApp\app\components\controls\notifications-viewer.component.ts" />
   </ItemGroup>
   
-
-  <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\app\app-error.handler.ts" />
-    <TypeScriptCompile Include="ClientApp\app\app-routing.module.ts" />
-    <TypeScriptCompile Include="ClientApp\app\app.module.ts" />
-    <TypeScriptCompile Include="ClientApp\services\auth-guard.service.ts" />
-  </ItemGroup>
-
-  <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
+  <Target Name="DevelopementRunWebpack" AfterTargets="Build" Condition="!Exists('wwwroot\dist\vendor.js')">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">
       <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
@@ -70,6 +57,7 @@
     <!-- In development, the dist files won't exist on the first run or when cloning to
          a different machine, so rebuild them if not already present. -->
     <Message Importance="high" Text="Performing first-run Webpack build..." />
+    <Exec Command="npm install" Condition="!Exists('node_modules/webpack/bin/webpack.js')" />
     <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js" />
     <Exec Command="node node_modules/webpack/bin/webpack.js" />
   </Target>

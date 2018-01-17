@@ -92,7 +92,7 @@ export class TranslateLanguageLoader implements TranslateLoader {
 
         switch (lang) {
             case "en":
-                return Observable.of(require("../app/assets/locale/en.json"));
+                return Observable.of(require("../assets/locale/en.json"));
             default:
         }
     }
