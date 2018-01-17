@@ -105,12 +105,6 @@
     "karma-webpack": "2.0.9"
   },
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
     "dev-build": "node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js"
   }
 }

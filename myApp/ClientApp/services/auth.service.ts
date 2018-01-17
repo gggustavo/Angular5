@@ -29,7 +29,7 @@ export class AuthService {
     private _loginStatus = new Subject<boolean>();
 
 
-    constructor(private router: Router, private configurations: ConfigurationService, private endpointFactory: EndpointFactory, private localStorage: LocalStoreManager) {
+    constructor(private router: Router, private configurations: ConfigurationService, private localStorage: LocalStoreManager) {
         this.initializeLoginStatus();
     }
     
@@ -98,8 +98,8 @@ export class AuthService {
 
 
     refreshLogin() {
-        return this.endpointFactory.getRefreshLoginEndpoint<LoginResponse>()
-            .map(response => this.processLoginResponse(response, this.rememberMe));
+        //return this.endpointFactory.getRefreshLoginEndpoint<LoginResponse>()
+        //    .map(response => this.processLoginResponse(response, this.rememberMe));
     }
 
 
@@ -108,8 +108,8 @@ export class AuthService {
         if (this.isLoggedIn)
             this.logout();
 
-        return this.endpointFactory.getLoginEndpoint<LoginResponse>(userName, password)
-            .map(response => this.processLoginResponse(response, rememberMe));
+        //return this.endpointFactory.getLoginEndpoint<LoginResponse>(userName, password)
+        //    .map(response => this.processLoginResponse(response, rememberMe));
     }
 
 
