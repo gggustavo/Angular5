@@ -31,23 +31,14 @@
     margin: 0;
 }
 
-.last-control-group {
-    margin-bottom: -25px;
+.borderlogin {
+    margin-top: 5%;
 }
 
-
-.panel-primary > .panel-heading {
-    background-color: rgba(0, 0, 0, 0.3);
-    border-color: transparent;
-}
-
-.panel-primary {
-    border-color: rgba(0, 0, 0,0.5);
-}
-.btn-primary {
+/*.btn-primary {
     background-color: rgba(0, 0, 0, 0.2);
     border-color: transparent;
-}
+}*/
 
 
 
