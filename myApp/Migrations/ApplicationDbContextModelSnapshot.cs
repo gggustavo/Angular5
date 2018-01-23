@@ -121,6 +121,45 @@ namespace myApp.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("DAL.Models.Customer", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address");
+
+                    b.Property<string>("City")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Country");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<byte[]>("Picture");
+
+                    b.Property<string>("State");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.HasKey("CustomerId");
+
+                    b.HasIndex("Name");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")

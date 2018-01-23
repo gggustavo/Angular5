@@ -4,6 +4,7 @@ using DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DAL
@@ -43,7 +44,14 @@ namespace DAL
                 await CreateUserAsync("admin", "tempP@ss123", "Inbuilt Administrator", "admin@ebenmonney.com", "+1 (123) 000-0000", new string[] { adminRoleName });
                 await CreateUserAsync("user", "tempP@ss123", "Inbuilt Standard User", "user@ebenmonney.com", "+1 (123) 000-0001", new string[] { userRoleName });
 
-                _logger.LogInformation("Inbuilt account generation completed");
+                _logger.LogInformation("Inbuilt account generation completed");                
+            }
+
+            if (!await _context.Customers.AnyAsync())
+            {
+                _logger.LogInformation("Seeding initial data");
+
+                await CreateCustomers();
             }
 
         }
@@ -83,5 +91,36 @@ namespace DAL
 
             return applicationUser;
         }
+
+        private async Task CreateCustomers()
+        {
+            var customers = new List<Customer>();
+
+            var customer = new Customer
+            {
+                Name = "ROVIAL",
+                Address = "La paz 409",
+                City = "Rosario",
+                Country = "Argentina",
+                State = "Santa Fe"
+            };
+            customers.Add(customer);
+
+            customer = new Customer
+            {
+                Name = "MILICIC",
+                Address = "Av. Pte. Perón - 8110",
+                City = "Rosario",
+                Country = "Argentina",
+                State = "Santa Fe"
+            };
+            customers.Add(customer);
+
+            _context.Customers.AddRange(customers);
+
+            await _context.SaveChangesAsync();
+
+        }
+
     }
 }

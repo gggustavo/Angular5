@@ -31,7 +31,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\controls\customers-management.component.ts" />
     <None Remove="ClientApp\app\components\controls\notifications-viewer.component.ts" />
+    <None Remove="ClientApp\app\components\customers\customers.component.ts" />
+    <None Remove="ClientApp\app\models\customer-edit.model.ts" />
+    <None Remove="ClientApp\app\models\customer.model.ts" />
+    <None Remove="ClientApp\app\services\customer-endpoint.service.ts" />
+    <None Remove="ClientApp\app\services\customer.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,7 +50,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\controls\customers-management.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\controls\notifications-viewer.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\customers\customers.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\customer-edit.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\customer.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\customer-endpoint.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\customer.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
   
   <Target Name="DevelopementRunWebpack" AfterTargets="Build" Condition="!Exists('wwwroot\dist\vendor.js')">

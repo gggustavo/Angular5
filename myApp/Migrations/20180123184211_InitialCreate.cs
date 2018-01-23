@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace myApp.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -59,6 +59,29 @@ namespace myApp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Customers",
+                columns: table => new
+                {
+                    CustomerId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Address = table.Column<string>(nullable: true),
+                    City = table.Column<string>(maxLength: 50, nullable: true),
+                    Country = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(maxLength: 256, nullable: true),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    Deleted = table.Column<bool>(nullable: false),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
+                    Picture = table.Column<byte[]>(nullable: true),
+                    State = table.Column<string>(nullable: true),
+                    UpdatedBy = table.Column<string>(maxLength: 256, nullable: true),
+                    UpdatedDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.CustomerId);
                 });
 
             migrationBuilder.CreateTable(
@@ -295,6 +318,11 @@ namespace myApp.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Customers_Name",
+                table: "Customers",
+                column: "Name");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OpenIddictApplications_ClientId",
                 table: "OpenIddictApplications",
                 column: "ClientId",
@@ -339,6 +367,9 @@ namespace myApp.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "OpenIddictScopes");

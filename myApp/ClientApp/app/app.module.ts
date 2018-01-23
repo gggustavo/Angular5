@@ -28,10 +28,14 @@ import { NotificationService } from './services/notification.service';
 import { NotificationEndpoint } from './services/notification-endpoint.service';
 import { AccountService } from './services/account.service';
 import { AccountEndpoint } from './services/account-endpoint.service';
+import { CustomerEndpoint } from './services/customer-endpoint.service';
+import { CustomerService } from './services/customer.service';
 
 import { AppComponent } from "./components/app.component";
 import { LoginComponent } from "./components/login/login.component";
 import { HomeComponent } from "./components/home/home.component";
+import { CustomersComponent } from "./components/customers/customers.component";
+import { CustomerInfoComponent } from "./components/controls/customers-management.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { NotificationsViewerComponent } from "./components/controls/notifications-viewer.component";
 
@@ -61,6 +65,8 @@ import { NotificationsViewerComponent } from "./components/controls/notification
         AppComponent,
         LoginComponent,
         HomeComponent,
+        CustomersComponent,
+        CustomerInfoComponent,
         NotFoundComponent,
         NotificationsViewerComponent
     ],
@@ -76,7 +82,9 @@ import { NotificationsViewerComponent } from "./components/controls/notification
         AccountService,
         AccountEndpoint,
         LocalStoreManager,
-        EndpointFactory
+        EndpointFactory,
+        CustomerEndpoint,
+        CustomerService
     ],
     bootstrap: [AppComponent]
 })

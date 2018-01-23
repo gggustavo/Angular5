@@ -43,7 +43,7 @@
 
 
 .navbar.app-component .nav > .active > a, .navbar.app-component .nav > .active > a:hover, .navbar.app-component .nav > .active > a:focus {
-    background-color: #efefef;
+    background-color: #000000;
     -webkit-box-shadow: none;
     box-shadow: none;
     color: #808080;
@@ -54,14 +54,17 @@
 }
 
     .navbar.app-component .nav > li > a {
-        color: white;
+        color: white;        
         font-weight: bold;
-        -webkit-text-shadow: none;
         text-shadow: none;
         height: 30px;
         padding-top: 6px;
         padding-bottom: 0px;
     }
+
+.nav.app-component > li > a:hover, .nav > li > a:focus {
+    background-color: #2a4e61;
+}
 
 
 .navbar-fixed-top.app-component .navbar-inner.app-component,
@@ -87,7 +90,6 @@ p.navbar-text.app-component {
 .navbar.app-component .brand {
     margin-top: 2px;
     color: #fff;
-    -webkit-text-shadow: none;
     text-shadow: none;
 }
 

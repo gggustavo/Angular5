@@ -16,8 +16,10 @@ namespace DAL
         public ApplicationDbContext(DbContextOptions options) : base(options)
         { }
 
+        public DbSet<Customer> Customers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
-        {
+        {            
             base.OnModelCreating(builder);
 
             builder.Entity<ApplicationUser>().HasMany(u => u.Claims).WithOne().HasForeignKey(c => c.UserId).IsRequired().OnDelete(DeleteBehavior.Cascade);
@@ -25,6 +27,12 @@ namespace DAL
 
             builder.Entity<ApplicationRole>().HasMany(r => r.Claims).WithOne().HasForeignKey(c => c.RoleId).IsRequired().OnDelete(DeleteBehavior.Cascade);
             builder.Entity<ApplicationRole>().HasMany(r => r.Users).WithOne().HasForeignKey(r => r.RoleId).IsRequired().OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Customer>().Property(c => c.Name).IsRequired().HasMaxLength(100);
+            builder.Entity<Customer>().HasIndex(c => c.Name);            
+            builder.Entity<Customer>().Property(c => c.City).HasMaxLength(50);
+            builder.Entity<Customer>().ToTable($"{nameof(Customers)}");
+
         }
 
 

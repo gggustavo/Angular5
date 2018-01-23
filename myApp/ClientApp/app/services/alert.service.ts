@@ -21,7 +21,6 @@ export class AlertService {
     showDialog(message: string)
     showDialog(message: string, type: DialogType, okCallback: (val?: any) => any)
     showDialog(message: string, type: DialogType, okCallback?: (val?: any) => any, cancelCallback?: () => any, okLabel?: string, cancelLabel?: string, defaultValue?: string)
-
     showDialog(message: string, type?: DialogType, okCallback?: (val?: any) => any, cancelCallback?: () => any, okLabel?: string, cancelLabel?: string, defaultValue?: string) {
 
         if (!type)
@@ -115,7 +114,7 @@ export class AlertService {
 
 
 
-    private showMessageHelper(summary: string, detail?: string, severity?: MessageSeverity, isSticky?: boolean) {
+    private showMessageHelper(summary: string, detail: string, severity: MessageSeverity, isSticky: boolean) {
 
         if (isSticky)
             this.stickyMessages.next({ severity: severity, summary: summary, detail: detail });
@@ -197,6 +196,11 @@ export class AlertService {
 }
 
 
+
+
+
+
+
 //******************** Dialog ********************//
 export class AlertDialog {
     constructor(public message: string, public type: DialogType, public okCallback: (val?: any) => any, public cancelCallback: () => any,
@@ -211,6 +215,8 @@ export enum DialogType {
     prompt
 }
 //******************** End ********************//
+
+
 
 
 
