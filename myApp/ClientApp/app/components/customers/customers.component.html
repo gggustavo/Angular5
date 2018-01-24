@@ -1,7 +1,25 @@
-﻿<div class="container">
-    <header class="pageHeader">
+﻿    <header class="pageHeader">
         <h3>{{'pageHeader.Customers' | translate}}</h3>
     </header>
+
+    <div class="row control-box">
+        <div class="col-sm-8">
+            <div class="form-group search-box">
+                <search-box (searchChange)="onSearchChanged($event)" placeholder="{{'buscar' | translate}}">></search-box>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="navbar action-box">
+                <ul class="nav navbar-nav navbar-right">
+                    <li *ngIf="canManageUsers" class="toolbaritem">
+                        <a href="javascript:;" (click)="newCustomer(row)">
+                            <i class="fa fa-plus-circle"></i> {{'Agregar' | translate}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <ngx-datatable class="material colored-header sm table table-striped table-hover"
                    [loadingIndicator]="loadingIndicator"
@@ -34,7 +52,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title pull-left">
                         <i class="fa fa-user-circle-o"></i>
-                        banana
+                        {{editingCustomerName ? ('Editar' | translate:editingCustomerName) : ('Nuevo' | translate)}}
                     </h4>
                     <button type="button" class="close pull-right" title="Close" (click)="editorModal.hide()">
                         <span aria-hidden="true">&times;</span>
@@ -46,5 +64,3 @@
             </div>
         </div>
     </div>
-
-</div>

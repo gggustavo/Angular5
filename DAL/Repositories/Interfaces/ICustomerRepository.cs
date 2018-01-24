@@ -6,6 +6,6 @@ namespace DAL.Repositories.Interfaces
     public interface ICustomerRepository : IRepository<Customer>
     {
         IEnumerable<Customer> GetTopActiveCustomers(int count);
-        IEnumerable<Customer> GetAllCustomersData();
+        IEnumerable<Customer> GetAllCustomersData();        
     }
 }

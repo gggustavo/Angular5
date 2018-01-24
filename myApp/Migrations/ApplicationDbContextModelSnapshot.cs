@@ -123,7 +123,7 @@ namespace myApp.Migrations
 
             modelBuilder.Entity("DAL.Models.Customer", b =>
                 {
-                    b.Property<int>("CustomerId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
@@ -153,7 +153,7 @@ namespace myApp.Migrations
 
                     b.Property<DateTime>("UpdatedDate");
 
-                    b.HasKey("CustomerId");
+                    b.HasKey("Id");
 
                     b.HasIndex("Name");
 

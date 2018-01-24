@@ -11,8 +11,8 @@ using System;
 namespace myApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180123184211_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20180124200405_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -124,7 +124,7 @@ namespace myApp.Migrations
 
             modelBuilder.Entity("DAL.Models.Customer", b =>
                 {
-                    b.Property<int>("CustomerId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
@@ -154,7 +154,7 @@ namespace myApp.Migrations
 
                     b.Property<DateTime>("UpdatedDate");
 
-                    b.HasKey("CustomerId");
+                    b.HasKey("Id");
 
                     b.HasIndex("Name");
 

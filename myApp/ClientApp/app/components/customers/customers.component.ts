@@ -3,27 +3,29 @@ import { fadeInOut } from '../../services/animations';
 import { Customer } from '../../models/customer.model';
 import { CustomerService } from '../../services/customer.service';
 import { AlertService, DialogType, MessageSeverity } from '../../services/alert.service';
+import { AppTranslationService } from "../../services/app-translation.service";
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Utilities } from '../../services/utilities';
 import { AccountService } from "../../services/account.service";
 import { Permission } from '../../models/permission.model';
-import { CustomerInfoComponent } from '../controls/customers-management.component';
+import { CustomerInfoComponent } from '../controls/customers-info.component';
 import { CustomerEdit } from '../../models/customer-edit.model';
 
 @Component({
     selector: 'customers',
     templateUrl: './customers.component.html',
-    styleUrls: ['./customers.component.css'],
-    animations: [fadeInOut]
+    styleUrls: ['./customers.component.css']    
 })
 
 export class CustomersComponent implements OnInit, AfterViewInit {
 
     columns: any[] = [];
     rows: Customer[] = [];
+    rowsCache: Customer[] = [];
     loadingIndicator: boolean;
     editedCustomer: CustomerEdit;
     editingCustomerName: { name: string };
+    sourceCustomer: CustomerEdit;
 
     @ViewChild('indexTemplate')
     indexTemplate: TemplateRef<any>;
@@ -40,28 +42,62 @@ export class CustomersComponent implements OnInit, AfterViewInit {
     @ViewChild('editorModal')
     editorModal: ModalDirective;
 
-    constructor(private alertService: AlertService, private accountService: AccountService, private customerService: CustomerService) {
+    constructor(private alertService: AlertService, private translationService: AppTranslationService, private accountService: AccountService, private customerService: CustomerService) {
 
     }
 
     ngOnInit(): void {
         this.columns = [
             { prop: "index", name: '#', width: 40, cellTemplate: this.indexTemplate, canAutoResize: false },
+            { prop: "id", name: 'CustomerId'},
             { prop: "name", name: 'Nombre', width: 150 },
             { prop: "city", name: 'Ciudad', width: 50 },
-            { prop: "address", name: 'Direccion', width: 150 },
+            { prop: "address", name: 'Direccion', width: 180 },
             { prop: "country", name: 'Pais', width: 50 },
             { prop: "state", name: 'Provincia', width: 50 }
         ];
 
         if (this.canManageUsers)
-            this.columns.push({ name: '', width: 130, cellTemplate: this.actionsTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false });
+            this.columns.push({ name: '', width: 200, cellTemplate: this.actionsTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false });
 
         this.loadData();
     }
 
     ngAfterViewInit(): void {
-       
+        this.customerEditor.changesSavedCallback = () => {
+            this.addNewUserToList();
+            this.editorModal.hide();
+        }
+
+        this.customerEditor.changesCancelledCallback = () => {
+            this.editedCustomer = null;
+            this.sourceCustomer = null;
+            this.editorModal.hide();
+        }
+    }
+
+    addNewUserToList() {
+        if (this.sourceCustomer) {
+            Object.assign(this.sourceCustomer, this.editedCustomer);
+            this.editedCustomer = null;
+            this.sourceCustomer = null;
+        }
+        else {
+            let customer = new Customer();
+            Object.assign(customer, this.editedCustomer);
+            this.editedCustomer = null;
+
+            let maxIndex = 0;
+            for (let u of this.rowsCache) {
+                if ((<any>u).index > maxIndex)
+                    maxIndex = (<any>u).index;
+            }
+
+            (<any>customer).index = maxIndex + 1;
+
+            this.rowsCache.splice(0, 0, customer);
+            this.rows.splice(0, 0, customer);
+        }
     }
 
     loadData() {
@@ -79,34 +115,53 @@ export class CustomersComponent implements OnInit, AfterViewInit {
 
     newCustomer() {
         this.editingCustomerName = null;
-        //..
+        this.sourceCustomer = null;
+        this.editedCustomer = this.customerEditor.newCustomer();
+        this.editorModal.show();
     }
 
     editCustomer(row: CustomerEdit) {
         this.editingCustomerName = { name: row.name };
-        //..
+        this.sourceCustomer = row;
+        this.editedCustomer = this.customerEditor.editCustomer(row)
+        this.editorModal.show();
     }
 
     deleteCustomer(row: CustomerEdit) {
-        this.alertService.showDialog('Are you sure you want to delete \"' + row.name + '\"?', DialogType.confirm, () => this.deleteCustomerHelper(row));    
+        this.alertService.showDialog('Esta seguro que desea eliminar \"' + row.name + '\"?', DialogType.confirm, () => this.deleteCustomerHelper(row));    
     }
 
     deleteCustomerHelper(row: CustomerEdit) {
         this.alertService.startLoadingMessage("Deleting...");
-        this.loadingIndicator = true;
+        this.loadingIndicator = true;        
 
-        //...
+        this.customerService.deleteCustomer(row)
+            .subscribe(results => {
+                this.alertService.stopLoadingMessage();
+                this.loadingIndicator = false;
+
+                this.rowsCache = this.rowsCache.filter(item => item !== row)
+                this.rows = this.rows.filter(item => item !== row)
+            },
+            error => {
+                this.alertService.stopLoadingMessage();
+                this.loadingIndicator = false;
+
+                this.alertService.showStickyMessage("Delete Error", `An error occured whilst deleting the user.\r\nError: "${Utilities.getHttpResponseMessage(error)}"`,
+                    MessageSeverity.error, error);
+            });
     }
 
     onDataLoadSuccesful(customers: Customer[]) {
         this.alertService.stopLoadingMessage();
         this.loadingIndicator = false;
 
-        customers.forEach((customer, index, customers) => {
+        customers.forEach((customer, index, customers) => {            
             (<any>customer).index = index + 1;
         });
 
         this.rows = customers;
+        this.rowsCache = [...customers];
     }
 
     onDataLoadFailed(error: any) {
@@ -115,6 +170,10 @@ export class CustomersComponent implements OnInit, AfterViewInit {
 
         this.alertService.showStickyMessage("Load Error", `Unable to retrieve users from the server.\r\nErrors: "${Utilities.getHttpResponseMessage(error)}"`,
             MessageSeverity.error, error);
+    }
+
+    onSearchChanged(value: string) {
+        this.rows = this.rowsCache.filter(r => Utilities.searchArray(value, false, r.name, r.address, r.city, r.state, r.country));
     }
 
     get canManageUsers() {

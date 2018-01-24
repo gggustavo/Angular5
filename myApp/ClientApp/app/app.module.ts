@@ -35,9 +35,10 @@ import { AppComponent } from "./components/app.component";
 import { LoginComponent } from "./components/login/login.component";
 import { HomeComponent } from "./components/home/home.component";
 import { CustomersComponent } from "./components/customers/customers.component";
-import { CustomerInfoComponent } from "./components/controls/customers-management.component";
+import { CustomerInfoComponent } from "./components/controls/customers-info.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { NotificationsViewerComponent } from "./components/controls/notifications-viewer.component";
+import { SearchBoxComponent } from "./components/controls/search-box.component";
 
 @NgModule({
     imports: [
@@ -68,7 +69,8 @@ import { NotificationsViewerComponent } from "./components/controls/notification
         CustomersComponent,
         CustomerInfoComponent,
         NotFoundComponent,
-        NotificationsViewerComponent
+        NotificationsViewerComponent,
+        SearchBoxComponent
     ],
     providers: [
         { provide: 'BASE_URL', useFactory: getBaseUrl },

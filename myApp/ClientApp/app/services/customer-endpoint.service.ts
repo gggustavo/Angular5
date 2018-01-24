@@ -9,8 +9,10 @@ import 'rxjs/add/operator/map';
 export class CustomerEndpoint extends EndpointFactory {
 
     private readonly _customerUrl: string = "/api/customer/customers";
+    private readonly _customerByIdUrl: string = "/api/customer/customersById";
 
     get customersUrl() { return this.configurations.baseUrl + this._customerUrl; }
+    get customersByIdUrl() { return this.configurations.baseUrl + this._customerByIdUrl; }
 
     constructor(http: HttpClient, configurations: ConfigurationService, injector: Injector) {
         super(http, configurations, injector);
@@ -24,4 +26,36 @@ export class CustomerEndpoint extends EndpointFactory {
             .catch(_ => { return this.handleError(_, () => this.getCustomersEndpoint()); });
     }
 
+    getCustomerByIdEndpoint<T>(customerId: number): Observable<T> {
+        let endpointUrl = `${this.customersByIdUrl}/${customerId}`;
+
+        return this.http.get<T>(endpointUrl, this.getRequestHeaders())
+            .catch(error => {
+                return this.handleError(error, () => this.getCustomerByIdEndpoint(customerId));
+            });
+    }
+
+    getNewCustomerEndpoint<T>(customerObject: any): Observable<T> {
+
+        return this.http.post<T>(this.customersUrl, JSON.stringify(customerObject), this.getRequestHeaders())
+            .catch(error => {
+                return this.handleError(error, () => this.getNewCustomerEndpoint(customerObject));
+            });
+    }
+
+    getUpdateCustomerEndpoint<T>(customerObject: any): Observable<T> {
+
+        return this.http.put<T>(this.customersUrl, JSON.stringify(customerObject), this.getRequestHeaders())
+            .catch(error => {
+                return this.handleError(error, () => this.getUpdateCustomerEndpoint(customerObject));
+            });
+    }
+
+    getDeleteCustomerEndpoint<T>(id: number): Observable<T> {
+        let endpointUrl = `${this._customerUrl}/${id}`;
+        return this.http.delete<T>(endpointUrl, this.getRequestHeaders())
+            .catch(error => {
+                return this.handleError(error, () => this.getDeleteCustomerEndpoint(id));
+            });
+    }
 }

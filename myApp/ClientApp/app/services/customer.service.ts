@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { CustomerEndpoint } from './customer-endpoint.service';
 import { Customer } from '../models/customer.model';
+import { CustomerEdit } from '../models/customer-edit.model';
 
 @Injectable()
 export class CustomerService {
@@ -15,5 +16,22 @@ export class CustomerService {
     getCustomers(page?: number, pageSize?: number) {
         return this.customerEndpoint.getCustomersEndpoint<Customer[]>(page, pageSize);
     }
+
+    getCustomerById(customerId: number) {
+        return this.customerEndpoint.getCustomerByIdEndpoint<Customer>(customerId);
+    }
+
+    newCustomer(customer: CustomerEdit) {
+        return this.customerEndpoint.getNewCustomerEndpoint<Customer>(customer);
+    }
+
+    updateCustomer(customer: CustomerEdit) {
+        return this.customerEndpoint.getUpdateCustomerEndpoint<Customer>(customer);
+    }
+
+    deleteCustomer(customer: CustomerEdit) {
+        return this.customerEndpoint.getDeleteCustomerEndpoint<Customer>(customer.id)
+    }
+
 
 }

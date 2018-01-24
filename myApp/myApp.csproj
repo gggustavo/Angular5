@@ -31,8 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\app\components\controls\customers-management.component.ts" />
+    <None Remove="ClientApp\app\components\controls\customers-info.component.ts" />
     <None Remove="ClientApp\app\components\controls\notifications-viewer.component.ts" />
+    <None Remove="ClientApp\app\components\controls\search-box.component.ts" />
     <None Remove="ClientApp\app\components\customers\customers.component.ts" />
     <None Remove="ClientApp\app\models\customer-edit.model.ts" />
     <None Remove="ClientApp\app\models\customer.model.ts" />
@@ -50,8 +51,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\app\components\controls\customers-management.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\controls\customers-info.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\controls\notifications-viewer.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\controls\search-box.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\customers\customers.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\customer-edit.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\customer.model.ts" />

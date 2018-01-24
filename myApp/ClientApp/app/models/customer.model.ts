@@ -1,8 +1,8 @@
 ﻿export class Customer {
 
-    constructor(customerid: string, name:string, city: string, address:string, country:string, state:string)
+    constructor(id?: number, name?:string, city?: string, address?:string, country?:string, state?:string)
     {
-        this.customerid = customerid;
+        this.id = id;
         this.name = name;
         this.city = city;
         this.address = address;
@@ -10,7 +10,7 @@
         this.state = state;
     }
 
-    public customerid: string;
+    public id: number;
     public name: string;
     public city: string;
     public address: string;
