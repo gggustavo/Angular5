@@ -39,9 +39,19 @@ import { CustomerInfoComponent } from "./components/controls/customers-info.comp
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { NotificationsViewerComponent } from "./components/controls/notifications-viewer.component";
 import { SearchBoxComponent } from "./components/controls/search-box.component";
+import { SettingsComponent } from "./components/settings/settings.component";
+import { UserInfoComponent } from "./components/controls/user-info.component";
+import { UserPreferencesComponent } from "./components/controls/user-preferences.component";
+import { UsersManagementComponent } from "./components/controls/users-management.component";
+import { RolesManagementComponent } from "./components/controls/roles-management.component";
+import { RoleEditorComponent } from "./components/controls/role-editor.component";
 
 import { EqualValidator } from './directives/equal-validator.directive';
 import { AutofocusDirective } from './directives/autofocus.directive';
+import { BootstrapTabDirective } from './directives/bootstrap-tab.directive';
+import { BootstrapSelectDirective } from './directives/bootstrap-select.directive';
+import { BootstrapToggleDirective } from './directives/bootstrap-toggle.directive';
+import { GroupByPipe } from './pipes/group-by.pipe';
 
 @NgModule({
     imports: [
@@ -71,11 +81,18 @@ import { AutofocusDirective } from './directives/autofocus.directive';
         HomeComponent,
         CustomersComponent,
         CustomerInfoComponent,
+        SettingsComponent,
+        UsersManagementComponent, UserInfoComponent, UserPreferencesComponent,
+        RolesManagementComponent, RoleEditorComponent,
         NotFoundComponent,
         NotificationsViewerComponent,
         SearchBoxComponent,
         EqualValidator,
-        AutofocusDirective
+        AutofocusDirective,
+        BootstrapTabDirective,
+        BootstrapSelectDirective,
+        BootstrapToggleDirective,
+        GroupByPipe
     ],
     providers: [
         { provide: 'BASE_URL', useFactory: getBaseUrl },

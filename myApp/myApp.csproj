@@ -33,12 +33,22 @@
   <ItemGroup>
     <None Remove="ClientApp\app\components\controls\customers-info.component.ts" />
     <None Remove="ClientApp\app\components\controls\notifications-viewer.component.ts" />
+    <None Remove="ClientApp\app\components\controls\role-editor.component.ts" />
+    <None Remove="ClientApp\app\components\controls\roles-management.component.ts" />
     <None Remove="ClientApp\app\components\controls\search-box.component.ts" />
+    <None Remove="ClientApp\app\components\controls\user-info.component.ts" />
+    <None Remove="ClientApp\app\components\controls\user-preferences.component.ts" />
+    <None Remove="ClientApp\app\components\controls\users-management.component.ts" />
     <None Remove="ClientApp\app\components\customers\customers.component.ts" />
+    <None Remove="ClientApp\app\components\settings\settings.component.ts" />
     <None Remove="ClientApp\app\directives\autofocus.directive.ts" />
+    <None Remove="ClientApp\app\directives\bootstrap-select.directive.ts" />
+    <None Remove="ClientApp\app\directives\bootstrap-tab.directive.ts" />
+    <None Remove="ClientApp\app\directives\bootstrap-toggle.directive.ts" />
     <None Remove="ClientApp\app\directives\equal-validator.directive.ts" />
     <None Remove="ClientApp\app\models\customer-edit.model.ts" />
     <None Remove="ClientApp\app\models\customer.model.ts" />
+    <None Remove="ClientApp\app\pipes\group-by.pipe.ts" />
     <None Remove="ClientApp\app\services\customer-endpoint.service.ts" />
     <None Remove="ClientApp\app\services\customer.service.ts" />
   </ItemGroup>
@@ -55,12 +65,22 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\controls\customers-info.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\controls\notifications-viewer.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\controls\role-editor.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\controls\roles-management.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\controls\search-box.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\controls\user-info.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\controls\user-preferences.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\controls\users-management.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\customers\customers.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\settings\settings.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\directives\autofocus.directive.ts" />
+    <TypeScriptCompile Include="ClientApp\app\directives\bootstrap-select.directive.ts" />
+    <TypeScriptCompile Include="ClientApp\app\directives\bootstrap-tab.directive.ts" />
+    <TypeScriptCompile Include="ClientApp\app\directives\bootstrap-toggle.directive.ts" />
     <TypeScriptCompile Include="ClientApp\app\directives\equal-validator.directive.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\customer-edit.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\customer.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\pipes\group-by.pipe.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\customer-endpoint.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\customer.service.ts" />
   </ItemGroup>

@@ -17,7 +17,7 @@
                 <div *ngIf="isUserLoggedIn" class="app-component collapse navbar-collapse menuItemsContainer">
 
                     <ul class="app-component nav navbar-nav nav-pills navBarPadding">
-                        <li routerLinkActive="active" *ngIf="canViewCustomers"><a routerLink="/customers">{{'mainMenu.Customers' | translate}}</a></li>                        
+                        <li routerLinkActive="active" *ngIf="canViewCustomers"><a routerLink="/customers">{{'mainMenu.Customers' | translate}}</a></li>
                     </ul>
 
                     <ul class="app-component nav navbar-nav nav-pills navBarPadding navbar-right">
@@ -35,6 +35,9 @@
                         <notifications-viewer [isViewOnly]="true"></notifications-viewer>
                     </ng-template>
 
+                    <ul class="app-component nav navbar-nav nav-pills navBarPadding navbar-right">
+                        <li routerLinkActive="active"><a routerLink="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
+                    </ul>
                 </div>
                 <div *ngIf="!isUserLoggedIn && router.isActive('/about', false)" class="app-component collapse navbar-collapse menuItemsContainer">
                     <ul class="app-component nav navbar-nav nav-pills navBarPadding navbar-right">

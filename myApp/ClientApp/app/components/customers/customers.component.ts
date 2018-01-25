@@ -14,7 +14,8 @@ import { CustomerEdit } from '../../models/customer-edit.model';
 @Component({
     selector: 'customers',
     templateUrl: './customers.component.html',
-    styleUrls: ['./customers.component.css']    
+    styleUrls: ['./customers.component.css'],
+    animations: [fadeInOut]
 })
 
 export class CustomersComponent implements OnInit, AfterViewInit {

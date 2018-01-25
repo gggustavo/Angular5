@@ -1,4 +1,5 @@
-﻿.control-box {
+﻿
+.control-box {
     margin-bottom: 5px;
 }
 
@@ -16,6 +17,7 @@
         padding-bottom: 5px;
         min-width: 100px;
     }
+
 
 @media (max-width: 768px) {
     .action-box {
