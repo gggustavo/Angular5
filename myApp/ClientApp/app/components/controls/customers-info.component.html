@@ -1,60 +1,61 @@
 ﻿<div>
     <form *ngIf="formResetToggle" [attr.autocomplete]="isGeneralEditor ? NaN : null" class="form-horizontal" name="customerInfoForm" #f="ngForm" novalidate
           (ngSubmit)="f.form.valid ? save() : 
-          (!name.valid && showErrorAlert('Nombre', 'Ingresar un nombre'));">
+
+          (!name.valid && showErrorAlert('Name is required', 'Please enter a user name (minimum of 2 and maximum of 200 characters)'));">
 
         <div class="form-group has-feedback">
-            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="name-{{uniqueId}}">{{'nombre' | translate}}</label>
+            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="name-{{uniqueId}}">{{'customer.editor.Name' | translate}}</label>
             <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
                 <p class="form-control-static">{{customer.name}}</p>
             </div>
             <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly" [ngClass]="{'has-success': f.submitted && name.valid, 'has-error' : f.submitted && !name.valid}">
-                <input autofocus type="text" attr.id="name-{{uniqueId}}" name="name" [attr.autocomplete]="isGeneralEditor ? null: null" placeholder="Ingrese un nombre"
+                <input autofocus type="text" attr.id="name-{{uniqueId}}" name="name" [attr.autocomplete]="isGeneralEditor ? null: null" placeholder="Enter a Name"
                        class="form-control" [(ngModel)]="customerEdit.name" #name="ngModel" required minlength="2" maxlength="200" />
                 <span *ngIf="showValidationErrors && f.submitted" class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok ': name.valid, 'glyphicon-remove' : !name.valid}"></span>
                 <span *ngIf="showValidationErrors && f.submitted && !name.valid" class="errorMessage">
-                    {{'Por favor ingrese un nombre' | translate}}
+                    {{'customer.editor.NameRequired' | translate}}
                 </span>
             </div>
         </div>
 
         <div class="form-group has-feedback">
-            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="address-{{uniqueId}}">{{'Direccion' | translate}}</label>
+            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="address-{{uniqueId}}">{{'customer.editor.Address' | translate}}</label>
             <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
                 <p class="form-control-static">{{customer.address}}</p>
             </div>
             <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
-                <input type="text" attr.id="address-{{uniqueId}}" name="city" placeholder="Ingrese una direccion" class="form-control" [(ngModel)]="customerEdit.address" />
+                <input type="text" attr.id="address-{{uniqueId}}" name="city" placeholder="Entre Adress" class="form-control" [(ngModel)]="customerEdit.address" />
             </div>
         </div>
 
         <div class="form-group has-feedback">
-            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="name-{{uniqueId}}">{{'Ciudad' | translate}}</label>
+            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="name-{{uniqueId}}">{{'customer.editor.City' | translate}}</label>
             <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
                 <p class="form-control-static">{{customer.city}}</p>
             </div>
             <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
-                <input type="text" attr.id="city-{{uniqueId}}" name="city" placeholder="Ingrese una ciudad" class="form-control" [(ngModel)]="customerEdit.city" />
+                <input type="text" attr.id="city-{{uniqueId}}" name="city" placeholder="Enter City" class="form-control" [(ngModel)]="customerEdit.city" />
             </div>
         </div>
 
         <div class="form-group has-feedback">
-            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="country-{{uniqueId}}">{{'Provincia' | translate}}</label>
+            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="country-{{uniqueId}}">{{'customer.editor.State' | translate}}</label>
             <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
                 <p class="form-control-static">{{customer.state}}</p>
             </div>
             <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
-                <input type="text" attr.id="state-{{uniqueId}}" name="state" placeholder="Ingrese una provincia" class="form-control" [(ngModel)]="customerEdit.state" />
+                <input type="text" attr.id="state-{{uniqueId}}" name="state" placeholder="Enter State" class="form-control" [(ngModel)]="customerEdit.state" />
             </div>
         </div>
 
         <div class="form-group has-feedback">
-            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="country-{{uniqueId}}">{{'Pais' | translate}}</label>
+            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="country-{{uniqueId}}">{{'customer.editor.Country' | translate}}</label>
             <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
                 <p class="form-control-static">{{customer.country}}</p>
             </div>
             <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
-                <input type="text" attr.id="country-{{uniqueId}}" name="country" placeholder="Ingrese un pais" class="form-control" [(ngModel)]="customerEdit.country" />
+                <input type="text" attr.id="country-{{uniqueId}}" name="country" placeholder="Enter Country" class="form-control" [(ngModel)]="customerEdit.country" />
             </div>
         </div>
 
@@ -63,12 +64,12 @@
             </div>
             <div class="col-sm-7">
                 <div class="pull-right">
-                    <button *ngIf="!isEditMode && isGeneralEditor" type="button" (click)="close()" class="btn btn-default"><i class='fa fa-close'></i> {{'Cerrar' | translate}}</button>
-                    <button *ngIf="!isEditMode && !isGeneralEditor" type="button" (click)="edit()" class="btn btn-default"><i class='fa fa-edit'></i> {{'Editar' | translate}}</button>
-                    <button *ngIf="isEditMode" type="reset" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i> {{'Cancelar' | translate}}</button>
+                    <button *ngIf="!isEditMode && isGeneralEditor" type="button" (click)="close()" class="btn btn-default"><i class='fa fa-close'></i> {{'customer.editor.Close' | translate}}</button>
+                    <button *ngIf="!isEditMode && !isGeneralEditor" type="button" (click)="edit()" class="btn btn-default"><i class='fa fa-edit'></i> {{'customer.editor.Edit' | translate}}</button>
+                    <button *ngIf="isEditMode" type="reset" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i> {{'customer.editor.Cancel' | translate}}</button>
                     <button *ngIf="isEditMode" type="submit" class="btn btn-primary" [disabled]="isSaving">
                         <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i>
-                        {{isSaving ? ('Guardando' | translate) : ('Guardar' | translate)}}
+                        {{isSaving ? ('customer.editor.Saving' | translate) : ('customer.editor.Save' | translate)}}
                     </button>
                 </div>
             </div>

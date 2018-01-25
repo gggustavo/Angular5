@@ -48,13 +48,16 @@ export class CustomersComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit(): void {
+
+        let gT = (key: string) => this.translationService.getTranslation(key);
+
         this.columns = [
             { prop: "index", name: '#', width: 40, cellTemplate: this.indexTemplate, canAutoResize: false },
-            { prop: "name", name: 'Nombre', width: 250 },
-            { prop: "address", name: 'Direccion', width: 250 },
-            { prop: "city", name: 'Ciudad', width: 150 },
-            { prop: "state", name: 'Provincia', width: 150 },
-            { prop: "country", name: 'Pais', width: 100 }
+            { prop: "name", name: gT('customer.management.Name'), width: 250 },
+            { prop: "address", name: gT('customer.management.Address'), width: 250 },
+            { prop: "city", name: gT('customer.management.City'), width: 150 },
+            { prop: "state", name: gT('customer.management.State'), width: 150 },
+            { prop: "country", name: gT('customer.management.Country'), width: 100 }
            
         ];
 

@@ -5,20 +5,13 @@
     "New": "New"
   },
   "mainMenu": {
-    "Appointments": "Appointments",
     "Customers": "Customers",
-    "Products": "Products",
-    "Orders": "Orders",
-    "About": "About",
     "Logout": "Logout"
   },
   "pageHeader": {
     "Dashboard": "Dashboard",
-    "Customers": "Clientes",
-    "Products": "Products",
-    "Orders": "Orders",
+    "Customers": "Customer",
     "NotFound": "Not-Found",
-    "About": "About",
     "Settings": "Settings"
   },
   "home": {
@@ -51,18 +44,11 @@
     "ReloadPreferencesHint": "Load default preferences (local changes are discarded)",
     "Language": "Language:",
     "English": "English",
-    "French": "French",
-    "German": "German",
-    "Portuguese": "Portuguese",
-    "Arabic": "Arabic",
-    "Korean": "Korean",
+    "Spanish": "Spanish",
     "LanguageHint": "Select the preferred language for your account",
     "HomePage": "Home Page:",
     "Dashboard": "Dashboard",
     "Customers": "Customers",
-    "Products": "Products",
-    "Orders": "Orders",
-    "About": "About",
     "Settings": "Settings",
     "HomePageHint": "Select the default page to navigate to on login",
     "Theme": "Theme:",
@@ -77,10 +63,6 @@
     "DashboardStatisticsHint": "Show demo graph widget on the dashboard",
     "DashboardNotifications": "Dashboard Notifications:",
     "DashboardNotificationsHint": "Show application notifications on the dashboard",
-    "DashboardTodo": "Dashboard Todo:",
-    "DashboardTodoHint": "Shows demo todo widget on the dashboard",
-    "DashboardBanner": "Dashboard Banner:",
-    "DashboardBannerHint": "Show demo information banner widget on the dashboard",
     "ResetDefault": "Reset default",
     "SetDefault": "Set as default"
   },
@@ -159,23 +141,31 @@
     "Date": "Date",
     "Notification": "Notification"
   },
-  "todoDemo": {
+  "customer": {
     "management": {
-      "Search": "Search for task...",
-      "HideCompleted": "Hide Completed",
-      "AddTask": "Add Task",
-      "Delete": "Delete task",
-      "Important": "Mark as important",
-      "Task": "Task",
-      "Description": "Description"
+      "Search": "Search for customer...",
+      "NewCustomer": "New Customer",
+      "Edit": "Edit",
+      "Delete": "Delete",
+      "EditCustomer": "Edit Customer \"{{name}}\"",
+      "Name": "Name",
+      "Address": "Address",
+      "City": "City",
+      "State": "State",
+      "Country": "Country"
     },
     "editor": {
-      "NewTask": "New Task",
       "Name": "Name",
-      "TaskNameRequired": "Task name is required",
-      "Description": "Description",
-      "Important": "Mark as important",
-      "AddTask": "Add Task"
+      "Address": "Address",
+      "City": "City",
+      "State": "State",
+      "Country": "Country",
+      "NameRequired": "Name is required (minimum of 2 and maximum of 200 characters)",
+      "Close": "Close",
+      "Edit": "Edit",
+      "Cancel": "Cancel",
+      "Save": "Save",
+      "Saving": "Saving..."
     }
   }
 }

@@ -1,0 +1,171 @@
+﻿{
+  "app": {
+    "Welcome": "Bienvenido",
+    "Notifications": "Notificaciones",
+    "New": "Nuevo"
+  },
+  "mainMenu": {
+    "Customers": "Clientes",
+    "Logout": "Cerrar session"
+  },
+  "pageHeader": {
+    "Dashboard": "Dashboard",
+    "Customers": "Clientes",
+    "NotFound": "No encontrado",
+    "Settings": "Configuración"
+  },
+  "home": {
+    "NoWidgets1": "No tiene Widgest.",
+    "NoWidgets2": "configurar los widgets disponibles",
+    "StatisticsTitle": "Algunas cosas importantes"
+  },
+  "notFound": {
+    "404": "404",
+    "pageNotFound": "La página que estás buscando no existe",
+    "backToHome": "Volver al inicio"
+  },
+  "settings": {
+    "tab": {
+      "Profile": "Perfil",
+      "Preferences": "Preferencias",
+      "Users": "Usuarios",
+      "Roles": "Roles"
+    },
+    "header": {
+      "UserProfile": "Perfil Usuario",
+      "UserPreferences": "Preferencias Usuario",
+      "UsersManagements": "Administrador Usuarios",
+      "RolesManagement": "Administrador Roles"
+    }
+  },
+  "preferences": {
+    "ReloadPreferences": "Recargar Preferencias:",
+    "ReloadPreferencesHint": "Cargar preferencias predeterminadas (los cambios locales se descartan)",
+    "Language": "Lenguaje:",
+    "English": "Ingles",
+    "Spanish": "Español",
+    "LanguageHint": "Seleccione el idioma preferido para su cuenta",
+    "HomePage": "Pagina Principal:",
+    "Dashboard": "Dashboard",
+    "Customers": "Clientes",
+    "Settings": "Configuración",
+    "HomePageHint": "Seleccione la página predeterminada para navegar al iniciar sesión",
+    "Theme": "Tema:",
+    "DefaultColor": "<span class='default-theme-option'>Default</span>",
+    "RedColor": "<span class='red-theme-option'>Rojo</span>",
+    "OrangeColor": "<span class='orange-theme-option'>Naranja</span>",
+    "GreenColor": "<span class='green-theme-option'>Verde</span>",
+    "GrayColor": "<span class='gray-theme-option'>Gris</span>",
+    "BlackColor": "<span class='black-theme-option'>Negro</span>",
+    "ThemeHint": "Seleccione el tema de color predeterminado para su cuenta",
+    "DashboardStatistics": "Dashboard Estadisticas:",
+    "DashboardStatisticsHint": "Show demo graph widget on the dashboard",
+    "DashboardNotifications": "Dashboard Notifications:",
+    "DashboardNotificationsHint": "Mostrar notificaciones de aplicaciones en el Dashboard",
+    "ResetDefault": "Resetear default",
+    "SetDefault": "Setear a default"
+  },
+  "users": {
+    "management": {
+      "Search": "Buscar por Usuario...",
+      "NewUser": "Nuevo usuario",
+      "Edit": "Editar",
+      "Delete": "Borrar",
+      "EditUser": "Editar Usuario \"{{name}}\"",
+      "Title": "Titulo",
+      "UserName": "Nombre Usuario",
+      "FullName": "Nombre completo",
+      "Email": "Email",
+      "Roles": "Roles",
+      "PhoneNumber": "Celular"
+    },
+    "editor": {
+      "JobTitle": "Ocupacion: ",
+      "UserName": "Nombre Usuario:",
+      "UserNameRequired": "Nombre de suario es requerido (mínimo 2 y máximo 200 caracteres)",
+      "Password": "Contraseña:",
+      "PasswordHint": "Tu contraseña es requerida cuando cambia el nombre de usuario",
+      "CurrentPasswordRequired": "Contraseña actual es requerida",
+      "Email": "Email:",
+      "EmailRequired": "Email es requerida (maxima 200 caracteres)",
+      "InvalidEmail": "Email no es valido",
+      "ChangePassword": "Cambio Contraseña",
+      "CurrentPassword": "Contraseña actual:",
+      "NewPassword": "Nueva contraseña:",
+      "NewPasswordRequired": "Nueva contraseña es requerida (minima 6 caracteres)",
+      "ConfirmPassword": "Confirmar contraseña:",
+      "ConfirmationPasswordRequired": "Contraseña confirmada es requerida",
+      "PasswordMismatch": "Nueva contraseña y confirmacion de contraseña no coinciden",
+      "Roles": "Roles:",
+      "FullName": " Nombre completo:",
+      "RoleRequired": " Rol es requerido",
+      "PhoneNumber": "Celular #:",
+      "Enabled": "Habilitado",
+      "Unblock": "Desactivar",
+      "Close": "Cerrar",
+      "Edit": "Editar",
+      "Cancel": "Cancelar",
+      "Save": "Guardar",
+      "Saving": "Guardando..."
+    }
+  },
+  "roles": {
+    "management": {
+      "Search": "Buscar por Rol...",
+      "NewRole": "Nuevo Rol",
+      "Edit": "Editar",
+      "Details": "Detalle",
+      "Delete": "Borrar",
+      "RoleDetails": "Detalle Rol",
+      "EditRole": "Editar Rol \"{{name}}\"",
+      "Name": "Nombre",
+      "Description": "Descripcion",
+      "Users": "Usuario"
+    },
+    "editor": {
+      "Name": "Nombre:",
+      "Description": "Descripción:",
+      "RoleNameRequired": "Nombre del rol es requerido (minimo 2 y máximo 200 caracteres)",
+      "SelectAll": "Seleccionar todos",
+      "SelectNone": "Seleccionar ninguno",
+      "Close": "Cerrar",
+      "Cancel": "Cancelar",
+      "Save": "Guardar",
+      "Saving": "Guardando..."
+    }
+  },
+  "notifications": {
+    "Delete": "Borrar notificaciones",
+    "Pin": "Pin notificación",
+    "Date": "Fecha",
+    "Notification": "Notificación"
+  },
+  "customer": {
+    "management": {
+      "Search": "Buscar por Cliente...",
+      "NewCustomer": "Nuevo Cliente",
+      "Edit": "Editar",
+      "Delete": "Borrar",
+      "EditCustomer": "Editar Cliente \"{{name}}\"",
+      "Name": "Nombre",
+      "Address": "Direccion",
+      "City": "Ciudad",
+      "State": "Provincia",
+      "Country": "Pais"
+    },
+    "editor": {
+      "Name": "Nombre",
+      "Address": "Direccion",
+      "City": "Ciudad",
+      "State": "Pais",
+      "Country": "Country",
+      "NameRequired": "Nombre es requerido (minimo 2 y maximo 200 caracteres)",
+      "Close": "Cerrar",
+      "Edit": "Editar",
+      "Cancel": "Cancelar",
+      "Save": "Guardar",
+      "Saving": "Guardando..."
+    }
+  }
+}
+
