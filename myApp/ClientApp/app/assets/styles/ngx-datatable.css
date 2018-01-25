@@ -150,7 +150,7 @@
 .ngx-datatable.material.colored-header .datatable-header {
     padding: .9rem 0;
     color: #fff;
-    background-color: rgba(158, 158, 158, 0.89);
+    background-color: #286090;
 }
 
 .ngx-datatable.material.table .datatable-body .datatable-body-row,

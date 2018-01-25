@@ -57,30 +57,6 @@ export class CustomerInfoComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (!this.isGeneralEditor) {
-            this.loadCurrentCustomerData();
-        }
-    }
-
-    private loadCurrentCustomerData() {
-        this.alertService.startLoadingMessage();
-
-        let customerId = this.customer.id;
-        this.customerService.getCustomerById(customerId)
-            .subscribe(_ => this.onCurrentCustomerDataLoadSuccessful(_), error => this.onCurrentCustomerDataLoadFailed(error));
-    }
-
-    private onCurrentCustomerDataLoadSuccessful(customer: Customer) {
-        this.alertService.stopLoadingMessage();
-        this.customer = customer;        
-    }   
-
-    private onCurrentCustomerDataLoadFailed(error: any) {
-        this.alertService.stopLoadingMessage();
-        this.alertService.showStickyMessage("Load Error", `Unable to retrieve user data from the server.\r\nErrors: "${Utilities.getHttpResponseMessage(error)}"`,
-            MessageSeverity.error, error);
-
-        this.customer = new Customer();
     }
 
     editCustomer(customer: Customer) {
@@ -156,13 +132,13 @@ export class CustomerInfoComponent implements OnInit {
 
         if (this.isGeneralEditor) {
             if (this.isNewCustomer)
-                this.alertService.showMessage("Success", `User \"${this.customer.name}\" was created successfully`, MessageSeverity.success);
+                this.alertService.showMessage("Success", `El cliente \"${this.customer.name}\" fue creado correctamente`, MessageSeverity.success);
             else if (!this.isEditingSelf)
-                this.alertService.showMessage("Success", `Changes to user \"${this.customer.name}\" was saved successfully`, MessageSeverity.success);
+                this.alertService.showMessage("Success", `Los cambios del cliente \"${this.customer.name}\" fueron guardados correctamente`, MessageSeverity.success);
         }
 
         if (this.isEditingSelf) {
-            this.alertService.showMessage("Success", "Changes to your User Profile was saved successfully", MessageSeverity.success);
+            this.alertService.showMessage("Success", "Los cambios han sido guardados correctamente", MessageSeverity.success);
             
         }
 
@@ -176,7 +152,7 @@ export class CustomerInfoComponent implements OnInit {
     private saveFailedHelper(error: any) {
         this.isSaving = false;
         this.alertService.stopLoadingMessage();
-        this.alertService.showStickyMessage("Save Error", "The below errors occured whilst saving your changes:", MessageSeverity.error, error);
+        this.alertService.showStickyMessage("Save Error", "Los siguientes errores ocurrieron mientras guardaba sus cambios:", MessageSeverity.error, error);
         this.alertService.showStickyMessage(error, null, MessageSeverity.error);
 
         if (this.changesFailedCallback)
@@ -206,7 +182,7 @@ export class CustomerInfoComponent implements OnInit {
         this.showValidationErrors = false;
         this.resetForm();
 
-        this.alertService.showMessage("Cancelled", "Operation cancelled by user", MessageSeverity.default);
+        this.alertService.showMessage("Cancelled", "Operación cancelada por el usuario", MessageSeverity.default);
         this.alertService.resetStickyMessage();
 
         if (!this.isGeneralEditor)

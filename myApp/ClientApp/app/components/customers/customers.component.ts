@@ -49,12 +49,12 @@ export class CustomersComponent implements OnInit, AfterViewInit {
     ngOnInit(): void {
         this.columns = [
             { prop: "index", name: '#', width: 40, cellTemplate: this.indexTemplate, canAutoResize: false },
-            { prop: "id", name: 'CustomerId'},
-            { prop: "name", name: 'Nombre', width: 150 },
-            { prop: "city", name: 'Ciudad', width: 50 },
-            { prop: "address", name: 'Direccion', width: 180 },
-            { prop: "country", name: 'Pais', width: 50 },
-            { prop: "state", name: 'Provincia', width: 50 }
+            { prop: "name", name: 'Nombre', width: 250 },
+            { prop: "address", name: 'Direccion', width: 250 },
+            { prop: "city", name: 'Ciudad', width: 150 },
+            { prop: "state", name: 'Provincia', width: 150 },
+            { prop: "country", name: 'Pais', width: 100 }
+           
         ];
 
         if (this.canManageUsers)

@@ -1,8 +1,7 @@
 ﻿<div>
     <form *ngIf="formResetToggle" [attr.autocomplete]="isGeneralEditor ? NaN : null" class="form-horizontal" name="customerInfoForm" #f="ngForm" novalidate
           (ngSubmit)="f.form.valid ? save() : 
-          (!name.valid && showErrorAlert('Nombre es requerido', 'Por favor ingrese un nombre'));
-          ;">
+          (!name.valid && showErrorAlert('Nombre es requerido', 'Por favor ingrese un nombre'));">
 
         <div class="form-group has-feedback">
             <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="name-{{uniqueId}}">{{'Nombre' | translate}}</label>
@@ -11,6 +10,10 @@
             </div>
             <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
                 <input autofocus type="text" attr.id="name-{{uniqueId}}" name="jobTitle" placeholder="Ingrese un nombre" class="form-control" [(ngModel)]="customerEdit.name" />
+                <span *ngIf="showValidationErrors && f.submitted" class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok ': name.valid, 'glyphicon-remove' : !name.valid}"></span>
+                <span *ngIf="showValidationErrors && f.submitted && !name.valid" class="errorMessage">
+                    {{'requerido' | translate}}
+                </span>
             </div>
         </div>
 

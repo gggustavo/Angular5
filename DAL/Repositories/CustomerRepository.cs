@@ -13,7 +13,7 @@ namespace DAL.Repositories
 
         public IEnumerable<Customer> GetAllCustomersData()
         {
-            return _appContext.Customers.ToList();
+            return _appContext.Customers.Where(_ => !_.Deleted).ToList();
         }
 
         public IEnumerable<Customer> GetTopActiveCustomers(int count)
