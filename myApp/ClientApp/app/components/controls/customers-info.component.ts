@@ -57,6 +57,7 @@ export class CustomerInfoComponent implements OnInit {
     }
 
     ngOnInit() {
+        
     }
 
     editCustomer(customer: Customer) {
@@ -82,7 +83,7 @@ export class CustomerInfoComponent implements OnInit {
         this.isGeneralEditor = true;
         this.isNewCustomer = true;
         this.editingCustomerName = null;
-        this.customer = this.customerEdit = new CustomerEdit();
+        this.customer = this.customerEdit = new CustomerEdit();        
         this.edit();
 
         return this.customerEdit;
@@ -166,14 +167,13 @@ export class CustomerInfoComponent implements OnInit {
         }
         else {
             this.formResetToggle = false;
-
             setTimeout(() => {
                 this.formResetToggle = true;
             });
         }
     }
 
-    private cancel() {
+    private cancel() {        
         if (this.isGeneralEditor)
             this.customerEdit = this.customer = new CustomerEdit();
         else
@@ -192,7 +192,7 @@ export class CustomerInfoComponent implements OnInit {
             this.changesCancelledCallback();
     }
 
-    private close() {
+    private close() {        
         this.customerEdit = this.customer = new CustomerEdit();
         this.showValidationErrors = false;
         this.resetForm();
@@ -200,5 +200,9 @@ export class CustomerInfoComponent implements OnInit {
 
         if (this.changesSavedCallback)
             this.changesSavedCallback();
+    }
+
+    private showErrorAlert(caption: string, message: string) {
+        this.alertService.showMessage(caption, message, MessageSeverity.error);
     }
 }

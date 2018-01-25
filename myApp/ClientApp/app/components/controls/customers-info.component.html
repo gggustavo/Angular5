@@ -1,18 +1,19 @@
 ﻿<div>
     <form *ngIf="formResetToggle" [attr.autocomplete]="isGeneralEditor ? NaN : null" class="form-horizontal" name="customerInfoForm" #f="ngForm" novalidate
           (ngSubmit)="f.form.valid ? save() : 
-          (!name.valid && showErrorAlert('Nombre es requerido', 'Por favor ingrese un nombre'));">
+          (!name.valid && showErrorAlert('Nombre', 'Ingresar un nombre'));">
 
         <div class="form-group has-feedback">
-            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="name-{{uniqueId}}">{{'Nombre' | translate}}</label>
+            <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="name-{{uniqueId}}">{{'nombre' | translate}}</label>
             <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
                 <p class="form-control-static">{{customer.name}}</p>
             </div>
-            <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
-                <input autofocus type="text" attr.id="name-{{uniqueId}}" name="jobTitle" placeholder="Ingrese un nombre" class="form-control" [(ngModel)]="customerEdit.name" />
+            <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly" [ngClass]="{'has-success': f.submitted && name.valid, 'has-error' : f.submitted && !name.valid}">
+                <input autofocus type="text" attr.id="name-{{uniqueId}}" name="name" [attr.autocomplete]="isGeneralEditor ? null: null" placeholder="Ingrese un nombre"
+                       class="form-control" [(ngModel)]="customerEdit.name" #name="ngModel" required minlength="2" maxlength="200" />
                 <span *ngIf="showValidationErrors && f.submitted" class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok ': name.valid, 'glyphicon-remove' : !name.valid}"></span>
                 <span *ngIf="showValidationErrors && f.submitted && !name.valid" class="errorMessage">
-                    {{'requerido' | translate}}
+                    {{'Por favor ingrese un nombre' | translate}}
                 </span>
             </div>
         </div>
@@ -23,7 +24,7 @@
                 <p class="form-control-static">{{customer.address}}</p>
             </div>
             <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
-                <input autofocus type="text" attr.id="address-{{uniqueId}}" name="city" placeholder="Ingrese una direccion" class="form-control" [(ngModel)]="customerEdit.address" />
+                <input type="text" attr.id="address-{{uniqueId}}" name="city" placeholder="Ingrese una direccion" class="form-control" [(ngModel)]="customerEdit.address" />
             </div>
         </div>
 
@@ -33,7 +34,7 @@
                 <p class="form-control-static">{{customer.city}}</p>
             </div>
             <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
-                <input autofocus type="text" attr.id="city-{{uniqueId}}" name="city" placeholder="Ingrese una ciudad" class="form-control" [(ngModel)]="customerEdit.city" />
+                <input type="text" attr.id="city-{{uniqueId}}" name="city" placeholder="Ingrese una ciudad" class="form-control" [(ngModel)]="customerEdit.city" />
             </div>
         </div>
 
@@ -43,7 +44,7 @@
                 <p class="form-control-static">{{customer.state}}</p>
             </div>
             <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
-                <input autofocus type="text" attr.id="state-{{uniqueId}}" name="state" placeholder="Ingrese una provincia" class="form-control" [(ngModel)]="customerEdit.state" />
+                <input type="text" attr.id="state-{{uniqueId}}" name="state" placeholder="Ingrese una provincia" class="form-control" [(ngModel)]="customerEdit.state" />
             </div>
         </div>
 
@@ -53,20 +54,20 @@
                 <p class="form-control-static">{{customer.country}}</p>
             </div>
             <div *ngIf="isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
-                <input autofocus type="text" attr.id="country-{{uniqueId}}" name="country" placeholder="Ingrese un pais" class="form-control" [(ngModel)]="customerEdit.country" />
+                <input type="text" attr.id="country-{{uniqueId}}" name="country" placeholder="Ingrese un pais" class="form-control" [(ngModel)]="customerEdit.country" />
             </div>
         </div>
 
         <div *ngIf="!isViewOnly" class="form-group">
-            <div class="col-sm-5">                
+            <div class="col-sm-5">
             </div>
             <div class="col-sm-7">
                 <div class="pull-right">
                     <button *ngIf="!isEditMode && isGeneralEditor" type="button" (click)="close()" class="btn btn-default"><i class='fa fa-close'></i> {{'Cerrar' | translate}}</button>
                     <button *ngIf="!isEditMode && !isGeneralEditor" type="button" (click)="edit()" class="btn btn-default"><i class='fa fa-edit'></i> {{'Editar' | translate}}</button>
-                    <button *ngIf="isEditMode" type="button" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i> {{'Cancelar' | translate}}</button>
+                    <button *ngIf="isEditMode" type="reset" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i> {{'Cancelar' | translate}}</button>
                     <button *ngIf="isEditMode" type="submit" class="btn btn-primary" [disabled]="isSaving">
-                        <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> 
+                        <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i>
                         {{isSaving ? ('Guardando' | translate) : ('Guardar' | translate)}}
                     </button>
                 </div>

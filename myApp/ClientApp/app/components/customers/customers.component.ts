@@ -58,7 +58,7 @@ export class CustomersComponent implements OnInit, AfterViewInit {
         ];
 
         if (this.canManageUsers)
-            this.columns.push({ name: '', width: 200, cellTemplate: this.actionsTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false });
+            this.columns.push({ name: '', width: 199, cellTemplate: this.actionsTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false });
 
         this.loadData();
     }
@@ -115,7 +115,7 @@ export class CustomersComponent implements OnInit, AfterViewInit {
 
     newCustomer() {
         this.editingCustomerName = null;
-        this.sourceCustomer = null;
+        this.sourceCustomer = null;        
         this.editedCustomer = this.customerEditor.newCustomer();
         this.editorModal.show();
     }

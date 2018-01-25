@@ -35,6 +35,8 @@
     <None Remove="ClientApp\app\components\controls\notifications-viewer.component.ts" />
     <None Remove="ClientApp\app\components\controls\search-box.component.ts" />
     <None Remove="ClientApp\app\components\customers\customers.component.ts" />
+    <None Remove="ClientApp\app\directives\autofocus.directive.ts" />
+    <None Remove="ClientApp\app\directives\equal-validator.directive.ts" />
     <None Remove="ClientApp\app\models\customer-edit.model.ts" />
     <None Remove="ClientApp\app\models\customer.model.ts" />
     <None Remove="ClientApp\app\services\customer-endpoint.service.ts" />
@@ -55,6 +57,8 @@
     <TypeScriptCompile Include="ClientApp\app\components\controls\notifications-viewer.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\controls\search-box.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\customers\customers.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\directives\autofocus.directive.ts" />
+    <TypeScriptCompile Include="ClientApp\app\directives\equal-validator.directive.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\customer-edit.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\customer.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\customer-endpoint.service.ts" />

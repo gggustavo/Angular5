@@ -40,6 +40,9 @@ import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { NotificationsViewerComponent } from "./components/controls/notifications-viewer.component";
 import { SearchBoxComponent } from "./components/controls/search-box.component";
 
+import { EqualValidator } from './directives/equal-validator.directive';
+import { AutofocusDirective } from './directives/autofocus.directive';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -70,7 +73,9 @@ import { SearchBoxComponent } from "./components/controls/search-box.component";
         CustomerInfoComponent,
         NotFoundComponent,
         NotificationsViewerComponent,
-        SearchBoxComponent
+        SearchBoxComponent,
+        EqualValidator,
+        AutofocusDirective
     ],
     providers: [
         { provide: 'BASE_URL', useFactory: getBaseUrl },
