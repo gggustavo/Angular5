@@ -2,7 +2,6 @@
 import { ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
-import { fadeInOut } from '../../services/animations';
 import { BootstrapTabDirective } from "../../directives/bootstrap-tab.directive";
 import { AppTranslationService } from "../../services/app-translation.service";
 import { AccountService, RolesChangedEventArg } from "../../services/account.service";
@@ -12,8 +11,7 @@ import { Permission } from '../../models/permission.model';
 @Component({
     selector: 'settings',
     templateUrl: './settings.component.html',
-    styleUrls: ['./settings.component.css'],
-    animations: [fadeInOut]
+    styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit, OnDestroy {
 
@@ -43,16 +41,16 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
 
     ngOnInit() {
-        this.fragmentSubscription = this.route.fragment.subscribe(anchor => this.showContent(anchor));
-        this.languageChangedSubscription = this.translationService.languageChangedEvent().subscribe(data => this.handleLanguageChangedEvent());
-        this.rolesChangedSubscription = this.accountService.getRolesChangedEvent().subscribe(data => this.handleRolesChangedEvent(data));
+        //this.fragmentSubscription = this.route.fragment.subscribe(anchor => this.showContent(anchor));
+        //this.languageChangedSubscription = this.translationService.languageChangedEvent().subscribe(data => this.handleLanguageChangedEvent());
+        //this.rolesChangedSubscription = this.accountService.getRolesChangedEvent().subscribe(data => this.handleRolesChangedEvent(data));
     }
 
 
     ngOnDestroy() {
-        this.fragmentSubscription.unsubscribe();
-        this.languageChangedSubscription.unsubscribe();
-        this.rolesChangedSubscription.unsubscribe();
+        //this.fragmentSubscription.unsubscribe();
+        //this.languageChangedSubscription.unsubscribe();
+        //this.rolesChangedSubscription.unsubscribe();
     }
 
 

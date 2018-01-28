@@ -62,7 +62,7 @@ export class CustomersComponent implements OnInit, AfterViewInit {
         ];
 
         if (this.canManageUsers)
-            this.columns.push({ name: '', width: 199, cellTemplate: this.actionsTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false });
+            this.columns.push({ name: '', width: 170, cellTemplate: this.actionsTemplate});
 
         this.loadData();
     }

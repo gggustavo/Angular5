@@ -1,34 +1,43 @@
 <div class="container">
-    <header class="pageHeader">
-        <h3><i class="fa fa-tachometer fa-lg page-caption" aria-hidden="true"></i> {{'pageHeader.Dashboard' | translate}}</h3>
-    </header>
-    <div [@fadeInOut]>
-        <!--<div *ngIf="!configurations.showDashboardStatistics && !configurations.showDashboardNotifications && !configurations.showDashboardTodo && !configurations.showDashboardBanner" class="well well-lg">
-            <h4 class="text-muted text-center">
-                {{'home.NoWidgets1' | translate}} <a routerLink="/settings" fragment="preferences"><i class="fa fa-sliders"></i> {{'settings.tab.Preferences' | translate}}</a>
-                {{'home.NoWidgets2' | translate}}
-            </h4>
-        </div>-->        
-        <!--<div *ngIf="configurations.showDashboardNotifications" class="row bottom-space">
-            <button type="button" class="close pull-right todo-close-btn" aria-label="Close" title="Close" (click)="configurations.showDashboardNotifications = false">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <div class="clearfix"></div>
-            <notifications-viewer></notifications-viewer>
-        </div>-->
-        <!--<div *ngIf="configurations.showDashboardTodo" class="row bottom-space">
-            <button type="button" class="close pull-right todo-close-btn" aria-label="Close" title="Close" (click)="configurations.showDashboardTodo = false">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <div class="clearfix"></div>
-            
-        </div>-->
-        <!--<div *ngIf="configurations.showDashboardBanner" class="row no-bottom-space">
-            <button type="button" class="close pull-right banner-close-btn" aria-label="Close" title="Close" (click)="configurations.showDashboardBanner = false">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <div class="clearfix"></div>
-            
-        </div>-->
-    </div>
+    <main role="main">
+        <!--<header class="pageHeader">
+        <h4><i class="fa fa-tachometer fa-lg page-caption" aria-hidden="true"></i> {{'pageHeader.Dashboard' | translate}}</h4>
+    </header>-->
+
+        <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded box-shadow">
+                <h3><i class="fa fa-tachometer fa-lg page-caption" aria-hidden="true"></i>&nbsp;</h3>
+                <div class="lh-100">
+                    <h6 class="mb-0 text-white lh-100">{{'pageHeader.Dashboard' | translate}}</h6>
+                </div>
+        </div>
+
+        <div class="my-3 p-3 bg-white rounded box-shadow">
+            <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
+            <div class="media text-muted pt-3">
+               
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">@username</strong>
+                    Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                </p>
+            </div>
+            <div class="media text-muted pt-3">
+
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">@username</strong>
+                    Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                </p>
+            </div>
+            <div class="media text-muted pt-3">
+
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">@username</strong>
+                    Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                </p>
+            </div>
+            <small class="d-block text-right mt-3">
+                <a href="#">All updates</a>
+            </small>
+        </div>
+
+    </main>
 </div>

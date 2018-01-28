@@ -1,10 +1,9 @@
-﻿<div>
-    <form *ngIf="formResetToggle" [attr.autocomplete]="isGeneralEditor ? NaN : null" class="form-horizontal" name="customerInfoForm" #f="ngForm" novalidate
+﻿<form *ngIf="formResetToggle" [attr.autocomplete]="isGeneralEditor ? NaN : null" class="form-horizontal" name="customerInfoForm" #f="ngForm" novalidate
           (ngSubmit)="f.form.valid ? save() : 
 
           (!name.valid && showErrorAlert('Name is required', 'Please enter a user name (minimum of 2 and maximum of 200 characters)'));">
 
-        <div class="form-group has-feedback">
+        <div class="form-group">
             <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="name-{{uniqueId}}">{{'customer.editor.Name' | translate}}</label>
             <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
                 <p class="form-control-static">{{customer.name}}</p>
@@ -19,7 +18,7 @@
             </div>
         </div>
 
-        <div class="form-group has-feedback">
+        <div class="form-group">
             <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="address-{{uniqueId}}">{{'customer.editor.Address' | translate}}</label>
             <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
                 <p class="form-control-static">{{customer.address}}</p>
@@ -29,7 +28,7 @@
             </div>
         </div>
 
-        <div class="form-group has-feedback">
+        <div class="form-group">
             <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="name-{{uniqueId}}">{{'customer.editor.City' | translate}}</label>
             <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
                 <p class="form-control-static">{{customer.city}}</p>
@@ -39,7 +38,7 @@
             </div>
         </div>
 
-        <div class="form-group has-feedback">
+        <div class="form-group">
             <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="country-{{uniqueId}}">{{'customer.editor.State' | translate}}</label>
             <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
                 <p class="form-control-static">{{customer.state}}</p>
@@ -49,7 +48,7 @@
             </div>
         </div>
 
-        <div class="form-group has-feedback">
+        <div class="form-group">
             <label [class.col-md-3]="isViewOnly" [class.col-md-2]="!isViewOnly" class="control-label" for="country-{{uniqueId}}">{{'customer.editor.Country' | translate}}</label>
             <div *ngIf="!isEditMode" [class.col-md-9]="isViewOnly" [class.col-md-10]="!isViewOnly">
                 <p class="form-control-static">{{customer.country}}</p>
@@ -59,10 +58,8 @@
             </div>
         </div>
 
-        <div *ngIf="!isViewOnly" class="form-group">
-            <div class="col-sm-5">
-            </div>
-            <div class="col-sm-7">
+        <div *ngIf="!isViewOnly">
+            <div class="modal-footer">
                 <div class="pull-right">
                     <button *ngIf="!isEditMode && isGeneralEditor" type="button" (click)="close()" class="btn btn-default"><i class='fa fa-close'></i> {{'customer.editor.Close' | translate}}</button>
                     <button *ngIf="!isEditMode && !isGeneralEditor" type="button" (click)="edit()" class="btn btn-default"><i class='fa fa-edit'></i> {{'customer.editor.Edit' | translate}}</button>
@@ -77,4 +74,3 @@
 
         <div class="clearfix"></div>
     </form>
-</div>
