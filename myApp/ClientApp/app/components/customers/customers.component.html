@@ -31,7 +31,7 @@
                 </div>
             </div>
 
-            <ngx-datatable class="material colored-header sm table table-striped table-hover"
+            <ngx-datatable class="material colored-header lg table table-hover"
                            [loadingIndicator]="loadingIndicator"
                            [rows]="rows"
                            [rowHeight]="35"
@@ -39,7 +39,7 @@
                            [footerHeight]="35"
                            [columns]="columns"
                            [scrollbarV]="true"
-                           [columnMode]="''">
+                           [columnMode]="'force'">
             </ngx-datatable>
 
             <ng-template #indexTemplate let-value="value">
@@ -51,8 +51,8 @@
 
             <ng-template #actionsTemplate let-row="row" let-value="value" let-i="index">
                 <div *ngIf="canManageUsers">
-                    <a class="btn btn-primary btn-sm" href="javascript:;" (click)="editCustomer(row)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{'customer.management.Edit' | translate}}</a>
-                    <a class="btn btn-primary btn-sm" href="javascript:;" (click)="deleteCustomer(row)"><i class="fa fa-trash-o" aria-hidden="true"></i> {{'customer.management.Delete' | translate}}</a>
+                    <a class="btn btn-secondary btn-sm" href="javascript:;" (click)="editCustomer(row)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{'customer.management.Edit' | translate}}</a>
+                    <a class="btn btn-secondary btn-sm" href="javascript:;" (click)="deleteCustomer(row)"><i class="fa fa-trash-o" aria-hidden="true"></i> {{'customer.management.Delete' | translate}}</a>
                 </div>
             </ng-template>
 

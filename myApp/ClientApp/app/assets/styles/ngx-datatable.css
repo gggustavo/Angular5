@@ -112,14 +112,14 @@
 .ngx-datatable.material .empty-row {
     height: 50px;
     text-align: left;
-    padding: .5rem 1.2rem;
+    /*padding: .5rem 1.2rem;*/
     vertical-align: top;
     border-top: 0;
 }
 
 .ngx-datatable.material .loading-row {
     text-align: left;
-    padding: .5rem 1.2rem;
+    /*padding: .5rem 1.2rem;*/
     vertical-align: top;
     border-top: 0;
 }
@@ -143,30 +143,30 @@
 
 
 .ngx-datatable.material .datatable-header {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 3px solid #F79C0F;
+    margin-bottom: 0.7rem;
 }
 
 
-.ngx-datatable.material.colored-header .datatable-header {
-    padding: .9rem 0;
+.ngx-datatable.material.colored-header .datatable-header {    
     color: #fff;
-    background-color: #286090;
+    background-color: #000;
 }
 
 .ngx-datatable.material.table .datatable-body .datatable-body-row,
 .ngx-datatable.material.table-bordered .datatable-body .datatable-body-row {
-    border-top: 1px solid #ddd;
+    /*border-top: 1px solid #F79C0F;*/
 }
 
 
 
 .ngx-datatable.material.table-bordered .datatable-header .datatable-header-cell {
-    padding: .9rem 1.2rem;
+    /*padding: .9rem 1.2rem;*/
 }
 
 
 .ngx-datatable.material.full-header .datatable-header .datatable-header-cell {
-    padding: .9rem 1.2rem;
+    /*padding: .9rem 1.2rem;*/
 }
 
 .ngx-datatable.material .datatable-header .datatable-header-cell {
@@ -197,7 +197,7 @@
 
 .ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell {
     text-align: left;
-    padding: .7rem 1.2rem;
+    /*padding: .7rem 1.2rem;*/
     vertical-align: top;
     border-top: 0;
     -webkit-transition: width 0.3s ease;

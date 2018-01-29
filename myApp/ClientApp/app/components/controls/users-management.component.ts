@@ -56,17 +56,17 @@ export class UsersManagementComponent implements OnInit, AfterViewInit {
         let gT = (key: string) => this.translationService.getTranslation(key);
 
         this.columns = [
-            { prop: "index", name: '#', width: 40, cellTemplate: this.indexTemplate, canAutoResize: false },
-            { prop: 'jobTitle', name: gT('users.management.Title'), width: 50 },
-            { prop: 'userName', name: gT('users.management.UserName'), width: 90, cellTemplate: this.userNameTemplate },
-            { prop: 'fullName', name: gT('users.management.FullName'), width: 120 },
-            { prop: 'email', name: gT('users.management.Email'), width: 140 },
+            { prop: "index", name: '#', width: 25, cellTemplate: this.indexTemplate, canAutoResize: false },
+            //{ prop: 'jobTitle', name: gT('users.management.Title'), width: 5 },
+            { prop: 'userName', name: gT('users.management.UserName'), width: 30, cellTemplate: this.userNameTemplate },
+            { prop: 'fullName', name: gT('users.management.FullName'), width: 80 },
+            { prop: 'email', name: gT('users.management.Email'), width: 130 },
             { prop: 'roles', name: gT('users.management.Roles'), width: 120, cellTemplate: this.rolesTemplate },
-            { prop: 'phoneNumber', name: gT('users.management.PhoneNumber'), width: 100 }
+            //{ prop: 'phoneNumber', name: gT('users.management.PhoneNumber'), width: 90 }
         ];
 
         if (this.canManageUsers)
-            this.columns.push({ name: '', width: 130, cellTemplate: this.actionsTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false });
+            this.columns.push({ name: '', width: 140, cellTemplate: this.actionsTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false });
 
         this.loadData();
     }

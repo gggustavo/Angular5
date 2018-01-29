@@ -49,10 +49,10 @@ export class RolesManagementComponent implements OnInit, AfterViewInit {
 
         this.columns = [
             { prop: "index", name: '#', width: 50, cellTemplate: this.indexTemplate, canAutoResize: false },
-            { prop: 'name', name: gT('roles.management.Name'), width: 200 },
+            { prop: 'name', name: gT('roles.management.Name'), width: 100 },
             { prop: 'description', name: gT('roles.management.Description'), width: 350 },
             { prop: 'usersCount', name: gT('roles.management.Users'), width: 80 },
-            { name: '', width: 130, cellTemplate: this.actionsTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false }
+            { name: '', width: 150, cellTemplate: this.actionsTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false }
         ];
 
         this.loadData();

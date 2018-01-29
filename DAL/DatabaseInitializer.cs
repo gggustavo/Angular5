@@ -116,6 +116,46 @@ namespace DAL
             };
             customers.Add(customer);
 
+            customer = new Customer
+            {
+                Name = "EPRECO",
+                Address = "Arijón 584.",
+                City = "Rosario",
+                Country = "Argentina",
+                State = "Santa Fe"
+            };
+            customers.Add(customer);
+
+            customer = new Customer
+            {
+                Name = "MSR",
+                Address = "Rioja 1993",
+                City = "Rosario",
+                Country = "Argentina",
+                State = "Santa Fe"
+            };
+            customers.Add(customer);
+
+            customer = new Customer
+            {
+                Name = "PRECON",
+                Address = "San Lorenzo 1580",
+                City = "Rosario",
+                Country = "Argentina",
+                State = "Santa Fe"
+            };
+            customers.Add(customer);
+
+            customer = new Customer
+            {
+                Name = "SUPERVILLE",
+                Address = "Sarmiento 601",
+                City = "Rosario",
+                Country = "Argentina",
+                State = "Santa Fe"
+            };
+            customers.Add(customer);
+
             _context.Customers.AddRange(customers);
 
             await _context.SaveChangesAsync();
