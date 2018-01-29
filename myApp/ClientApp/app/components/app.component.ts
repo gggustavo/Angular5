@@ -66,7 +66,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 
         this.toastyConfig.theme = 'bootstrap';
-        this.toastyConfig.position = 'top-right';
+        this.toastyConfig.position = 'top-center';
         this.toastyConfig.limit = 100;
         this.toastyConfig.showClose = true;
 

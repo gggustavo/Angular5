@@ -6,11 +6,12 @@
   },
   "mainMenu": {
     "Customers": "Customers",
+    "Settings": "Settings",
     "Logout": "Logout"
   },
   "pageHeader": {
     "Dashboard": "Dashboard",
-    "Customers": "Customer",
+    "Customers": "Customers",
     "NotFound": "Not-Found",
     "Settings": "Settings"
   },

@@ -17,7 +17,7 @@
     "@ngtools/webpack": "1.9.0",
     "@types/webpack-env": "1.13.3",
     "@ngx-translate/core": "9.0.1",
-    "@swimlane/ngx-datatable": "11.1.5",
+    "@swimlane/ngx-datatable": "11.1.7",
     "@types/jquery": "3.2.16",
     "angular2-template-loader": "0.6.2",
     "aspnet-webpack": "2.0.1",

@@ -4,10 +4,10 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" routerLink="/">{{appTitle}}</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div *ngIf="isUserLoggedIn" class="collapse navbar-collapse" id="navbarsExample09">
+                <div *ngIf="isUserLoggedIn" class="collapse navbar-collapse" id="navbars">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item" routerLinkActive="active" *ngIf="canViewCustomers">
                             <a class="nav-link" routerLink="/customers">{{'mainMenu.Customers' | translate}}</a>
@@ -16,10 +16,14 @@
                     <ul class="navbar-nav navbar-light">
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:;">
-                                {{'app.Welcome' | translate}}&nbsp; <i class="fa fa-user-o" aria-hidden="true"></i> &nbsp;{{userName}}
+                                <i class="fa fa-user-o" aria-hidden="true"></i> &nbsp; {{'app.Welcome' | translate}} &nbsp; {{userName}}
                             </a>
                         </li>
-                        <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/settings"><i class="fa fa-cog" aria-hidden="true"></i></a></li>
+                        <li class="nav-item"> <a class="nav-link">|</a></li>
+                        <li class="nav-item" routerLinkActive="active">
+                            <a class="nav-link" routerLink="/settings"><i class="fa fa-cog" aria-hidden="true"></i> {{'mainMenu.Settings' | translate}}</a>
+                        </li>
+                        <li class="nav-item"> <a class="nav-link">|</a></li>
                         <li class="nav-item" (click)="logout()">
                             <a class="nav-link" href="javascript:;"><i class="fa fa-sign-out" aria-hidden="true"></i> {{'mainMenu.Logout' | translate}}</a>
                         </li>
@@ -29,13 +33,7 @@
         </nav>
 
     </header>
-    <footer class="footer">
-        <div class="container">
-            <p>
-                <span class="appName">App</span> &copy; <a href="/">myApp</a>
-            </p>
-        </div>
-    </footer>
+    
     <div id="pre-bootstrap" *ngIf="!removePrebootScreen" [class.prebootShow.app-component]="!isAppLoaded" class="app-component prebootStep">
         <div class="messaging">
             <h1>

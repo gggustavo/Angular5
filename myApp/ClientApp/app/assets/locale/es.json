@@ -6,6 +6,7 @@
   },
   "mainMenu": {
     "Customers": "Clientes",
+    "Settings": "Configuración",
     "Logout": "Cerrar session"
   },
   "pageHeader": {
