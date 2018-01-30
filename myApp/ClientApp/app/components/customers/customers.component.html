@@ -21,7 +21,7 @@
                 <div class="col-sm-4">
                     <div class="navbar action-box">
                         <ul class="nav navbar-nav navbar-right">
-                            <li *ngIf="canManageUsers" class="toolbaritem">
+                            <li *ngIf="canManageCustomers" class="toolbaritem">
                                 <a href="javascript:;" (click)="newCustomer(row)">
                                     <i class="fa fa-plus-circle"></i> {{'customer.management.NewCustomer' | translate}}
                                 </a>
@@ -50,7 +50,7 @@
             </ng-template>
 
             <ng-template #actionsTemplate let-row="row" let-value="value" let-i="index">
-                <div *ngIf="canManageUsers">
+                <div *ngIf="canManageCustomers">
                     <a class="btn btn-secondary btn-sm" href="javascript:;" (click)="editCustomer(row)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{'customer.management.Edit' | translate}}</a>
                     <a class="btn btn-secondary btn-sm" href="javascript:;" (click)="deleteCustomer(row)"><i class="fa fa-trash-o" aria-hidden="true"></i> {{'customer.management.Delete' | translate}}</a>
                 </div>

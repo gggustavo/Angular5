@@ -61,7 +61,7 @@ export class CustomersComponent implements OnInit, AfterViewInit {
            
         ];
 
-        if (this.canManageUsers)
+        if (this.canManageCustomers)
             this.columns.push({ name: '', width: 170, cellTemplate: this.actionsTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false});
 
         this.loadData();
@@ -180,8 +180,8 @@ export class CustomersComponent implements OnInit, AfterViewInit {
         this.rows = this.rowsCache.filter(r => Utilities.searchArray(value, false, r.name, r.address, r.city, r.state, r.country));
     }
 
-    get canManageUsers() {
-        return this.accountService.userHasPermission(Permission.manageUsersPermission);
+    get canManageCustomers() {
+        return this.accountService.userHasPermission(Permission.manageCustomersPermission);
     }
 
 
